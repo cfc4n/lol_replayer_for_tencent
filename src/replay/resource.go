@@ -150,7 +150,6 @@ func Loadfile(file string) error {
 			break
 		}
 	}
-	fmt.Println()
 
 	/*
 		获取obmeta信息
@@ -272,7 +271,6 @@ func Loadfile(file string) error {
 //	log.Println("协议版本:", ObVersion)
 
 
-	//"spectator 127.0.0.1:8080 4iDght8wUXHhzlP37OnRb2ekRVRWecFj 1643152753 HN1"
 	NowKeyFrameId = 1	//初始化
 	GameDataChunk = make(map[string][]byte)
 	KeyFrame = make(map[string][]byte)
@@ -285,7 +283,7 @@ func Loadfile(file string) error {
 	here:
 		startlen += strlen
 		if startlen+7 > alllen {
-//			fmt.Println("END...")
+//			END...
 			break
 		}
 		head = body[startlen : startlen+7]

@@ -15,6 +15,7 @@ cd 项目目录
 
 #使用：
 >在 http://api.pallas.tgp.qq.com/core/get_ob_list 中，有很多http://ob.pallas.tgp.qq.com/ob_data/1_1789151000.ob 字样的录像文件，下载下来
+
 ``cfc4n@cnxct:~/Project/github/lol_replayer_for_tencent/bin$./launcher -f  1_1789151000.ob``
 
 #备注
