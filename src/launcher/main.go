@@ -61,12 +61,16 @@ func main() {
 	//	s.StringVarLong(&lolroot_path, "path", 'X', "The root path of League of Legends games", "/Applications/League of Legends.app/")
 	//	s.Uint16VarLong(&lolclient_port, "client_port", 'Y',"The port LolClient connected.")
 	s.StringVarLong(&lolobfile, "obfile", 'f', "ob录像文件所在路径，建议放在replays目录下。")
-
+	s.Parse(os.Args)
 	if help {
 		s.PrintUsage(os.Stderr)
 		return
 	}
 
+ 	if (len(lolobfile) <= 0) {
+ 		s.PrintUsage(os.Stderr)
+		return
+ 	}
 	lolroot_path = getCurrentDirectory()
 
 	lolCommands := command.NewLolCommand()
