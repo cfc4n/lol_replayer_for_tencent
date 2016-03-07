@@ -22,3 +22,6 @@ cd 项目目录
 
 #备注
 windows平台需要在编译时，填写LOL游戏所在目录
+
+#GUI
+我們提供了windows的GUI，請先將launcher編譯完成後放到LoL client資料夾底下，再進入LoL_replayGUI開啟application重播。
