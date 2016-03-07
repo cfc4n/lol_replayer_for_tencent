@@ -94,8 +94,8 @@ namespace WinGUITest1
                 p.Start();
                 StreamWriter sw = p.StandardInput;
                 //sw.WriteLine("dir /w");
-                //sw.WriteLine(@"E:");
-                sw.WriteLine(@"cd C:\Program Files (x86)\GarenaLoLTW\GameData\Apps\LoLTW");
+                sw.WriteLine(@"E:");
+                sw.WriteLine(@"cd E:\GarenaLoLTW\GameData\Apps\LoLTW");
                 sw.WriteLine(@"launcher.exe -f 1_1868885635.ob");
                 p.StandardInput.WriteLine("exit");
                 strOutput = p.StandardOutput.ReadToEnd();//匯出整個執行過程
@@ -117,12 +117,7 @@ namespace WinGUITest1
 
         }
 
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click_2(object sender, EventArgs e)
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }

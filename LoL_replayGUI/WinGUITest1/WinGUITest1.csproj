@@ -107,26 +107,13 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\bg.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\paper.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\paper_big.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\paper_resize.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\pp.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ogo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Image1.jpg" />
-    <Content Include="ogo.png" />
+    <None Include="Resources\bg.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
