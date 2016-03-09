@@ -30,3 +30,19 @@ C:\Users\Blurry\Documents\Visual Studio 2012\Projects\LoLReplayGUI\lol_replay_GU
 C:\Users\Blurry\Documents\Visual Studio 2012\Projects\LoLReplayGUI\lol_replay_GUI\WinGUITest1\obj\Debug\WinGUITest1.Form1.resources
 C:\Users\Blurry\Documents\Visual Studio 2012\Projects\LoLReplayGUI\lol_replay_GUI\WinGUITest1\obj\Debug\WinGUITest1.Properties.Resources.resources
 C:\Users\Blurry\Documents\Visual Studio 2012\Projects\LoLReplayGUI\lol_replay_GUI\WinGUITest1\obj\Debug\WinGUITest1.csproj.GenerateResource.Cache
+C:\Users\Scoly\Desktop\LoLL\lol_replayer_for_tencent\LoL_replayGUI\WinGUITest1\bin\Debug\WinGUITest1.exe.config
+C:\Users\Scoly\Desktop\LoLL\lol_replayer_for_tencent\LoL_replayGUI\WinGUITest1\obj\Debug\Interop.SHDocVw.dll
+C:\Users\Scoly\Desktop\LoLL\lol_replayer_for_tencent\LoL_replayGUI\WinGUITest1\obj\Debug\Interop.WMPLib.dll
+C:\Users\Scoly\Desktop\LoLL\lol_replayer_for_tencent\LoL_replayGUI\WinGUITest1\obj\Debug\AxInterop.WMPLib.dll
+C:\Users\Scoly\Desktop\LoLL\lol_replayer_for_tencent\LoL_replayGUI\WinGUITest1\obj\Debug\WinGUITest1.csproj.ResolveComReference.cache
+C:\Users\Scoly\Desktop\LoLL\lol_replayer_for_tencent\LoL_replayGUI\WinGUITest1\obj\Debug\WinGUITest1.exe
+C:\Users\Scoly\Desktop\LoLL\lol_replayer_for_tencent\LoL_replayGUI\WinGUITest1\obj\Debug\WinGUITest1.pdb
+C:\Users\Scoly\Desktop\LoLL\lol_replayer_for_tencent\LoL_replayGUI\WinGUITest1\bin\Debug\WinGUITest1.exe
+C:\Users\Scoly\Desktop\LoLL\lol_replayer_for_tencent\LoL_replayGUI\WinGUITest1\bin\Debug\WinGUITest1.pdb
+C:\Users\Scoly\Desktop\LoLL\lol_replayer_for_tencent\LoL_replayGUI\WinGUITest1\bin\Debug\Interop.SHDocVw.dll
+C:\Users\Scoly\Desktop\LoLL\lol_replayer_for_tencent\LoL_replayGUI\WinGUITest1\bin\Debug\Interop.WMPLib.dll
+C:\Users\Scoly\Desktop\LoLL\lol_replayer_for_tencent\LoL_replayGUI\WinGUITest1\bin\Debug\AxInterop.WMPLib.dll
+C:\Users\Scoly\Desktop\LoLL\lol_replayer_for_tencent\LoL_replayGUI\WinGUITest1\obj\Debug\WinGUITest1.csprojResolveAssemblyReference.cache
+C:\Users\Scoly\Desktop\LoLL\lol_replayer_for_tencent\LoL_replayGUI\WinGUITest1\obj\Debug\WinGUITest1.Form1.resources
+C:\Users\Scoly\Desktop\LoLL\lol_replayer_for_tencent\LoL_replayGUI\WinGUITest1\obj\Debug\WinGUITest1.Properties.Resources.resources
+C:\Users\Scoly\Desktop\LoLL\lol_replayer_for_tencent\LoL_replayGUI\WinGUITest1\obj\Debug\WinGUITest1.csproj.GenerateResource.Cache

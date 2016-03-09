@@ -94,8 +94,8 @@ namespace WinGUITest1
                 p.Start();
                 StreamWriter sw = p.StandardInput;
                 //sw.WriteLine("dir /w");
-                sw.WriteLine(@"E:");
-                sw.WriteLine(@"cd E:\GarenaLoLTW\GameData\Apps\LoLTW");
+               // sw.WriteLine(@"E:");
+                sw.WriteLine(@"cd C:\Program Files (x86)\GarenaLoLTW\GameData\Apps\LoLTW");
                 sw.WriteLine(@"launcher.exe -f 1_1868885635.ob");
                 p.StandardInput.WriteLine("exit");
                 strOutput = p.StandardOutput.ReadToEnd();//匯出整個執行過程
@@ -121,5 +121,36 @@ namespace WinGUITest1
         {
 
         }
+
+        private void listView2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox51_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            textBox3.BackColor = pictureBox1.BackColor;
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

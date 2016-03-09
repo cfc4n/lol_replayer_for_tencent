@@ -115,6 +115,60 @@
   <ItemGroup>
     <None Include="Resources\bg.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Caitlyn_4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Caitlyn_small.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Caitlyn_tiny.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paper.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\playbig.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star_small.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo_v2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo_v2_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo_v2_mid.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\item_resize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\item_resize1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\list.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\list.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\champion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\newlist.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
