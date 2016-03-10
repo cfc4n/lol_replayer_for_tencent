@@ -3,7 +3,7 @@ import urllib2
 from bs4 import BeautifulSoup
 import sys
 import json
-import codecs
+
 class Player:
     def __init__(self):
         ''' 
@@ -14,6 +14,7 @@ class Player:
         self.name = None
         self.incoming = 0
         self.KDA = None
+        #http://img.lolbox.duowan.com/zb/2031_24x24.jpg
         self.equipments = []
         self.farm = 0
         self.img_src = None
@@ -49,7 +50,7 @@ class Table:
             weapons = each.find('div', {'class':'u-weapon'})
             equipments = weapons.find('ul', {'class':'chuzhuang'}).find_all('img')
             for eq in equipments:
-                self.player_list[count].equipments.append(eq.get('src').encode('utf-8'))
+                self.player_list[count].equipments.append(eq.get('src').encode('utf-8').split('/')[-1].split('_')[0])
             #print self.player_list[count].equipments
             self.player_list[count].farm = int(weapons.find('span', {'class':'minions-killed'}).text.encode('utf-8').split('：')[-1])
             #print self.player_list[count].farm
