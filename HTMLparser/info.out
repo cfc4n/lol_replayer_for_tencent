@@ -1,0 +1,16 @@
+{
+    "__module__": "__main__", 
+    "money": "68K/57K", 
+    "__class__": "GameInfo", 
+    "dic": {
+        "gameLength": "31 分钟", 
+        "kill": "38/22", 
+        "type": "单人排位", 
+        "finishingTime": "23:03", 
+        "money": "68K/57K"
+    }, 
+    "kill": "38/22", 
+    "gameLength": "31 分钟", 
+    "type": "单人排位", 
+    "finishingTime": "23:03"
+}
