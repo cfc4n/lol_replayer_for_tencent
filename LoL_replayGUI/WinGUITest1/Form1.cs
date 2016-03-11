@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
+using howto_listview_display_subitem_icons;
 
 namespace WinGUITest1
 {
@@ -23,6 +24,45 @@ namespace WinGUITest1
         private void Form1_Load(object sender, EventArgs e)
         {
 
+            lvwBooks.Groups.Add(new ListViewGroup("1", HorizontalAlignment.Left));
+            lvwBooks.Groups.Add(new ListViewGroup("2", HorizontalAlignment.Left));
+            lvwBooks.Groups.Add(new ListViewGroup("3", HorizontalAlignment.Left));
+            // Start with the last View (Details) selected.
+            lvwBooks.SmallImageList = Lol_heros;
+            lvwBooks.ShowSubItemIcons(true);
+            // Make the column headers.
+            lvwBooks.MakeColumnHeaders(
+                "Title", 55, HorizontalAlignment.Right,
+                "URL", 55, HorizontalAlignment.Left,
+                "ISBN", 55, HorizontalAlignment.Left,
+                "Picture", 55, HorizontalAlignment.Left,
+                "Pages", 55, HorizontalAlignment.Right);
+
+            // Add data rows.
+            lvwBooks.AddRow("", "", "", "", "");
+            lvwBooks.AddRow("", "", "", "", "");
+            lvwBooks.AddRow("", "", "", "", ""); // empty
+            lvwBooks.AddRow("", "", "", "", "");
+            lvwBooks.AddRow("", "", "", "", "");
+            lvwBooks.AddRow("", "", "", "", ""); // empty
+
+            int k = 0;
+            // Add icons to the sub-items.
+            for (int r = 0; r < lvwBooks.Items.Count; r++)
+            {
+                // Set the main item's image index.
+                lvwBooks.Items[r].ImageIndex = r;
+                lvwBooks.Items[r].Group = lvwBooks.Groups[k];
+                // Set the sub-item indices.
+                for (int c = 1; c < lvwBooks.Columns.Count; c++)
+                {
+                    lvwBooks.AddIconToSubitem(r, c, c);
+                }
+
+                if (r % 2 == 1) k++;
+            }
+
+        
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -63,17 +103,25 @@ namespace WinGUITest1
 
         private void button2_Click(object sender, EventArgs e)
         {
-            // get LoL Replay Application
-            /*Process[] pArr = new Process[20];
-            pArr = Process.GetProcessesByName("League of Legends");
-            MessageBox.Show(pArr.Length.ToString());*/
-            Process[] pArr = new Process[20];
-            pArr = Process.GetProcessesByName("launcher");
-            MessageBox.Show(pArr.Length.ToString() + " exe files");
-            for (int i = 0; i < pArr.Length; i++)
+            // Create an instance of the open file dialog box.
+            FolderBrowserDialog openFileDialog1 = new FolderBrowserDialog();
+
+            int size = -1;
+            DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
+            if (result == DialogResult.OK) // Test result.
             {
-                pArr[i].Kill();
+                //string file = openFileDialog1.SelectedPath;
+                try
+                {
+                    //string text = File.ReadAllText(file);
+                    string path = openFileDialog1.SelectedPath;
+                    tbResults.Text = path;
+                }
+                catch (IOException)
+                {
+                }
             }
+            
         }
 
         void startLoLReplay() {
@@ -112,10 +160,6 @@ namespace WinGUITest1
         
         }
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -152,5 +196,24 @@ namespace WinGUITest1
 
         }
 
+        private void pictureBox105_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lvwBooks_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (lvwBooks.SelectedItems[0] != null) MessageBox.Show(lvwBooks.SelectedItems[0].Group.ToString());
+
+        }
+
+        private void tbResults_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+ 
     }
 }
