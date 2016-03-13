@@ -22,6 +22,7 @@ namespace WinGUITest1
     {
         public string path;
         public string[] files;
+        public String groupName;
         public Form1()
         {
             InitializeComponent();
@@ -125,25 +126,7 @@ namespace WinGUITest1
             ListViewRight.AddRow("", "", "", "", "", "", "", "", "", "", "", "", "", "", ""); // empty
 
             for (int i = 0; i < 13; i++) ListViewRight.Items[i].ImageIndex = -1;
-            /*
-            // Add icons to the sub-items.
-            Debug.Write(ListViewRight.Items.Count);
-            for (int r = 0; r < ListViewRight.Items.Count; r++)
-            {
 
-                ListViewRight.Items[r].ImageIndex = -1;
-                if (r > 0 && r != 7 && r != 6)
-                {
-                    // Set the sub-item indices.
-                    for (int c = 1; c < ListViewRight.Columns.Count; c++)
-                    {
-                        // 加圖片在這行 表示在 (r,c)加上圖片, 
-                        // 注意第三個參數要是imageList裡面的index, 可以透過名稱去找, 但名稱要記得加上.png (圖片完整名稱)
-                        if ((c > 3 && c < 11) || c == 1) ListViewRight.AddIconToSubitem(r, c, SearchImageFromList("Annie.png"));
-                    }
-                }
-            }
-            */
 #endregion
 
         }
@@ -330,8 +313,8 @@ namespace WinGUITest1
                 StreamWriter sw = p.StandardInput;
                 //sw.WriteLine("dir /w");
                // sw.WriteLine(@"E:");
-                sw.WriteLine(@"cd C:\Program Files (x86)\GarenaLoLTW\GameData\Apps\LoLTW");
-                sw.WriteLine(@"launcher.exe -f 1_1868885635.ob");
+                sw.WriteLine(@"cd "+path);
+                sw.WriteLine(@"launcher.exe -f "+groupName+".ob");
                 p.StandardInput.WriteLine("exit");
                 strOutput = p.StandardOutput.ReadToEnd();//匯出整個執行過程
                 MessageBox.Show(strOutput);
@@ -393,7 +376,7 @@ namespace WinGUITest1
 
             //ListViewRight.Clear();
             //if (lvwBooks.SelectedItems[0] != null) MessageBox.Show(lvwBooks.SelectedItems[0].Group.ToString());
-            String groupName=lvwBooks.SelectedItems[0].Group.ToString();
+            groupName=lvwBooks.SelectedItems[0].Group.ToString();
             // 新增資料部分, empty為強制換行(符合背景格式)
 
             // Debug.Write(groupName);

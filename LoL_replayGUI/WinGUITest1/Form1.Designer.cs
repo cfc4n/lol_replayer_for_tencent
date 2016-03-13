@@ -456,26 +456,30 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Transparent;
-            this.button1.Image = global::WinGUITest1.Properties.Resources.playbig;
-            this.button1.Location = new System.Drawing.Point(1126, 676);
+            this.button1.Image = global::WinGUITest1.Properties.Resources.play;
+            this.button1.Location = new System.Drawing.Point(1142, 672);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(64, 81);
+            this.button1.Size = new System.Drawing.Size(64, 66);
             this.button1.TabIndex = 5;
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // button2
             // 
+            this.button2.BackColor = System.Drawing.Color.Gainsboro;
             this.button2.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(84, 642);
+            this.button2.ForeColor = System.Drawing.Color.Black;
+            this.button2.Location = new System.Drawing.Point(78, 672);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(185, 45);
             this.button2.TabIndex = 6;
             this.button2.Text = "choose file";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // pictureBox1
@@ -624,7 +628,7 @@
             // 
             // tbResults
             // 
-            this.tbResults.Location = new System.Drawing.Point(24, 709);
+            this.tbResults.Location = new System.Drawing.Point(24, 630);
             this.tbResults.Name = "tbResults";
             this.tbResults.Size = new System.Drawing.Size(287, 22);
             this.tbResults.TabIndex = 194;
@@ -673,6 +677,7 @@
             this.Controls.Add(this.pictureBox97);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button2);
+            this.ForeColor = System.Drawing.Color.Transparent;
             this.Name = "Form1";
             this.Text = "LoL Replay";
             this.Load += new System.EventHandler(this.Form1_Load);
