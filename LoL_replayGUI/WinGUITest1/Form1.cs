@@ -21,6 +21,7 @@ namespace WinGUITest1
     public partial class Form1 : Form
     {
         public string path;
+        public string[] files;
         public Form1()
         {
             InitializeComponent();
@@ -84,47 +85,49 @@ namespace WinGUITest1
 
 #region ListViewRight
 
-
+            
             ControlTrans(ListViewRight, ListViewRight.BackgroundImage);
             ListViewRight.SmallImageList = Lol_heros;
             ListViewRight.ShowSubItemIcons(true);
             // Make the column headers.
-
+            
             // header, 設定欄位
             ListViewRight.MakeColumnHeaders(
                 "Empty", 15, HorizontalAlignment.Right,
                 "HeroPic", 50, HorizontalAlignment.Right,
-                "Level", 30, HorizontalAlignment.Center,
-                "Name", 138, HorizontalAlignment.Left,
-                "Killed", 60, HorizontalAlignment.Left,
-                "Talent1", 56, HorizontalAlignment.Center,
-                "Talent2", 53, HorizontalAlignment.Center,
-                "Accessories1", 49, HorizontalAlignment.Center,
-                "Accessories2", 49, HorizontalAlignment.Center,
-                "Accessories3", 49, HorizontalAlignment.Center,
-                "Accessories4", 49, HorizontalAlignment.Center,
-                "Accessories5", 49, HorizontalAlignment.Center,
-                "Accessories6", 49, HorizontalAlignment.Center,
-                "Accessories7", 49, HorizontalAlignment.Center,
+                "Name", 155, HorizontalAlignment.Left,
+                "Killed", 65, HorizontalAlignment.Center,
+                "Empty", 15, HorizontalAlignment.Right,
+                "Accessories1", 47, HorizontalAlignment.Center,
+                "Accessories2", 47, HorizontalAlignment.Center,
+                "Accessories3", 47, HorizontalAlignment.Center,
+                "Accessories4", 47, HorizontalAlignment.Center,
+                "Accessories5", 47, HorizontalAlignment.Center,
+                "Accessories6", 47, HorizontalAlignment.Center,
+                "Accessories7", 47, HorizontalAlignment.Center,
+                "Empty", 15, HorizontalAlignment.Right,
                 "Money", 60, HorizontalAlignment.Left,
                 "Value", 30, HorizontalAlignment.Left);
-
+            
             // 新增資料部分, empty為強制換行(符合背景格式)
-            ListViewRight.AddRow("", "", "", "", ""); // empty
-            ListViewRight.AddRow("", "", "18", "我很厲害會發光優\n你好", "10", "", "", "", "", "", "", "", "", "", "150000", "50");
-            ListViewRight.AddRow("", "", "18", "我很厲害會發光優\n你好", "10", "", "", "", "", "", "", "", "", "", "150000", "50");
-            ListViewRight.AddRow("", "", "18", "我很厲害會發光優\n你好", "10", "", "", "", "", "", "", "", "", "", "150000", "50");
-            ListViewRight.AddRow("", "", "18", "我很厲害會發光優\n你好", "10", "", "", "", "", "", "", "", "", "", "150000", "50");
-            ListViewRight.AddRow("", "", "18", "我很厲害會發光優\n你好", "10", "", "", "", "", "", "", "", "", "", "150000", "50");
-            ListViewRight.AddRow("", "", "", "", ""); // empty
-            ListViewRight.AddRow("", "", "", "", ""); // empty
-            ListViewRight.AddRow("", "", "18", "我很厲害會發光優\n你好", "10", "", "", "", "", "", "", "", "", "", "150000", "50");
-            ListViewRight.AddRow("", "", "18", "我很厲害會發光優\n你好", "10", "", "", "", "", "", "", "", "", "", "150000", "50");
-            ListViewRight.AddRow("", "", "18", "我很厲害會發光優\n你好", "10", "", "", "", "", "", "", "", "", "", "150000", "50");
-            ListViewRight.AddRow("", "", "18", "我很厲害會發光優\n你好", "10", "", "", "", "", "", "", "", "", "", "150000", "50");
-            ListViewRight.AddRow("", "", "18", "我很厲害會發光優\n你好", "10", "", "", "", "", "", "", "", "", "", "150000", "50");
+            ListViewRight.AddRow("", "", "", "", "", "", "", "", "", "", "", "", "", "", ""); // empty
+            ListViewRight.AddRow("", "", "", "", "", "", "", "", "", "", "", "", "", "", ""); // empty
+            ListViewRight.AddRow("", "", "", "", "", "", "", "", "", "", "", "", "", "", ""); // empty
+            ListViewRight.AddRow("", "", "", "", "", "", "", "", "", "", "", "", "", "", ""); // empty
+            ListViewRight.AddRow("", "", "", "", "", "", "", "", "", "", "", "", "", "", ""); // empty
+            ListViewRight.AddRow("", "", "", "", "", "", "", "", "", "", "", "", "", "", ""); // empty
+            ListViewRight.AddRow("", "", "", "", "", "", "", "", "", "", "", "", "", "", ""); // empty
+            ListViewRight.AddRow("", "", "", "", "", "", "", "", "", "", "", "", "", "", ""); // empty
+            ListViewRight.AddRow("", "", "", "", "", "", "", "", "", "", "", "", "", "", ""); // empty
+            ListViewRight.AddRow("", "", "", "", "", "", "", "", "", "", "", "", "", "", ""); // empty
+            ListViewRight.AddRow("", "", "", "", "", "", "", "", "", "", "", "", "", "", ""); // empty
+            ListViewRight.AddRow("", "", "", "", "", "", "", "", "", "", "", "", "", "", ""); // empty
+            ListViewRight.AddRow("", "", "", "", "", "", "", "", "", "", "", "", "", "", ""); // empty
 
+            for (int i = 0; i < 13; i++) ListViewRight.Items[i].ImageIndex = -1;
+            /*
             // Add icons to the sub-items.
+            Debug.Write(ListViewRight.Items.Count);
             for (int r = 0; r < ListViewRight.Items.Count; r++)
             {
 
@@ -136,11 +139,11 @@ namespace WinGUITest1
                     {
                         // 加圖片在這行 表示在 (r,c)加上圖片, 
                         // 注意第三個參數要是imageList裡面的index, 可以透過名稱去找, 但名稱要記得加上.png (圖片完整名稱)
-                        if ((c > 4 && c < 14) || c == 1) ListViewRight.AddIconToSubitem(r, c, SearchImageFromList("Annie.png"));
+                        if ((c > 3 && c < 11) || c == 1) ListViewRight.AddIconToSubitem(r, c, SearchImageFromList("Annie.png"));
                     }
                 }
             }
-            
+            */
 #endregion
 
         }
@@ -180,13 +183,14 @@ namespace WinGUITest1
             }
             
         }
+        
 
         public class Player
         {
             public string __module__ { get; set; }
-            public double incoming { get; set; }
+            public string incoming { get; set; }
             public string name { get; set; }
-            public int farm { get; set; }
+            public string farm { get; set; }
             public string __class__ { get; set; }
             public string KDA { get; set; }
             public List<string> equipments { get; set; }
@@ -215,8 +219,8 @@ namespace WinGUITest1
                     path = openFileDialog1.SelectedPath;
                     tbResults.Text = path;
 
-                    string[] files = Directory.GetFiles(openFileDialog1.SelectedPath);
-                    int cnt = 0, tmp_cnt = 0;
+                    files = Directory.GetFiles(openFileDialog1.SelectedPath);
+                    int tmp_cnt = 0;
                     foreach (string file in files)
                     {
                         string fileName = Path.GetFileNameWithoutExtension(file);
@@ -227,64 +231,78 @@ namespace WinGUITest1
                         {
                             String label = fileName;
                             lvwBooks.Groups.Add(new ListViewGroup(label, HorizontalAlignment.Left));
-                            
-                            foreach (string jsonFile in files)
+                            String jsonFile = fileName + 'A';
+                           // Debug.Write(jsonFile);
+                            foreach (string f in files)
                             {
-  
-                                
-                                string isJson = Path.GetExtension(jsonFile);
-                                if (String.Compare(isJson, ".json") == 0)
-                                {
-
-                                    using (StreamReader r = new StreamReader(jsonFile))
+                                string jsonFileName=Path.GetFileNameWithoutExtension(f);
+                                if(String.Compare(jsonFileName,jsonFile)==0){
+                                    using (StreamReader r = new StreamReader(f))
                                     {
                                         string json = r.ReadToEnd();
-                                       
+                                       // Debug.Write(json);
                                         Team perTeam = JsonConvert.DeserializeObject<Team>(json);
 
                                         lvwBooks.AddRow("", "", "", "", ""); // empty
-                                        
+
                                         // Add icons to the sub-items.
                                         for (int i = tmp_cnt; i < lvwBooks.Items.Count; i++)
                                         {
                                             // Set the main item's image index.
                                             int index = SearchImageFromList(perTeam.player_list[0].role + ".png");
                                             lvwBooks.Items[i].ImageIndex = index;
-                                           // lvwBooks.Items[i].ImageKey = "Annie.png";
-                                            Debug.Write(cnt);
                                             lvwBooks.Items[i].Group = lvwBooks.Groups[tmp_cnt / 2];
-                                            
+
                                             for (int c = 1; c < lvwBooks.Columns.Count; c++)
                                             {
-                                                //lvwBooks.Items[k].ImageKey = i.role+".png";
                                                 index = SearchImageFromList(perTeam.player_list[c].role + ".png");
                                                 lvwBooks.AddIconToSubitem(i, c, index);
 
                                             }
                                         }
-                                        tmp_cnt++;                                  
+                                        tmp_cnt++;
                                     }
                                 }
-                                
                             }
-                            cnt++;
+                            jsonFile = fileName + 'B';
+                            //Debug.Write(jsonFile);
+                            foreach (string f in files)
+                            {
+                                string jsonFileName = Path.GetFileNameWithoutExtension(f);
+                                if (String.Compare(jsonFileName, jsonFile) == 0)
+                                {
+                                    using (StreamReader r = new StreamReader(f))
+                                    {
+                                        string json = r.ReadToEnd();
+                                        //Debug.Write(json);
+                                        Team perTeam = JsonConvert.DeserializeObject<Team>(json);
+
+                                        lvwBooks.AddRow("", "", "", "", ""); // empty
+
+                                        // Add icons to the sub-items.
+                                        for (int i = tmp_cnt; i < lvwBooks.Items.Count; i++)
+                                        {
+                                            // Set the main item's image index.
+                                            int index = SearchImageFromList(perTeam.player_list[0].role + ".png");
+                                            lvwBooks.Items[i].ImageIndex = index;
+                                            lvwBooks.Items[i].Group = lvwBooks.Groups[tmp_cnt / 2];
+
+                                            for (int c = 1; c < lvwBooks.Columns.Count; c++)
+                                            {
+                                                index = SearchImageFromList(perTeam.player_list[c].role + ".png");
+                                                lvwBooks.AddIconToSubitem(i, c, index);
+
+                                            }
+                                        }
+                                        tmp_cnt++;
+                                    }
+                                }
+                            }
+                                
+                                
+                            
                         }
                     }
-
-
-                    /*  if (lvwBooks.SelectedItems.Count > 0)
-                      {
-
-                          ListViewItem selected = lvwBooks.SelectedItems[0];
-                          string selectedFilePath = selected.Tag.ToString();
-
-                        //  PlayYourFile(selectedFilePath);
-
-                      }
-                      else
-                      {
-                          // Show a message
-                      }*/
                 }
                 catch (IOException)
                 {
@@ -373,8 +391,83 @@ namespace WinGUITest1
         private void lvwBooks_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            if (lvwBooks.SelectedItems[0] != null) MessageBox.Show(lvwBooks.SelectedItems[0].Group.ToString());
+            //ListViewRight.Clear();
+            //if (lvwBooks.SelectedItems[0] != null) MessageBox.Show(lvwBooks.SelectedItems[0].Group.ToString());
+            String groupName=lvwBooks.SelectedItems[0].Group.ToString();
+            // 新增資料部分, empty為強制換行(符合背景格式)
 
+            // Debug.Write(groupName);
+            int row;
+            String jsonName = groupName + 'A';
+            foreach (string f in files)
+            {
+                string jsonFileName = Path.GetFileNameWithoutExtension(f);
+              // Debug.Write(jsonFileName);
+               // Debug.Write(groupName);
+
+                if (String.Compare(jsonFileName, jsonName) == 0)
+                {
+ 
+                    //Debug.Write(jsonFileName);
+                    using (StreamReader r = new StreamReader(f))
+                    {
+                        string json = r.ReadToEnd();
+                        //Debug.Write(json);
+                        Team perTeam = JsonConvert.DeserializeObject<Team>(json);
+
+                        for (row = 1; row < 6; row++)
+                        {
+                            String roleName = perTeam.player_list[row-1].role + ".png";
+                            Debug.Write(roleName);
+                            ListViewRight.AddIconToSubitem(row, 1, SearchImageFromList(roleName));
+                            ListViewRight.Items[row].SubItems[2].Text = perTeam.player_list[row - 1].name + '\n' + perTeam.player_list[row - 1].role;
+                            ListViewRight.Items[row].SubItems[3].Text = perTeam.player_list[row - 1].KDA;
+                            for(int j=0;j<perTeam.player_list[row-1].equipments.Count;j++)
+                                ListViewRight.AddIconToSubitem(row, 5+j, SearchImageFromList(perTeam.player_list[row - 1].equipments[j]+".png"));
+                            ListViewRight.Items[row].SubItems[13].Text = perTeam.player_list[row - 1].incoming;
+                            ListViewRight.Items[row].SubItems[14].Text = perTeam.player_list[row - 1].farm;
+                            //ListViewRight.AddToSubitem(row, 1, SearchImageFromList(roleName));
+
+                        }
+                    }
+                }
+            }
+
+            jsonName = groupName + 'B';
+            foreach (string f in files)
+            {
+                string jsonFileName = Path.GetFileNameWithoutExtension(f);
+                // Debug.Write(jsonFileName);
+                // Debug.Write(groupName);
+
+                if (String.Compare(jsonFileName, jsonName) == 0)
+                {
+
+                    //Debug.Write(jsonFileName);
+                    using (StreamReader r = new StreamReader(f))
+                    {
+                        string json = r.ReadToEnd();
+                        //Debug.Write(json);
+                        Team perTeam = JsonConvert.DeserializeObject<Team>(json);
+
+                        for (row = 8; row < 13; row++)
+                        {
+                            String roleName = perTeam.player_list[row - 8].role + ".png";
+                            Debug.Write(roleName);
+                            ListViewRight.AddIconToSubitem(row, 1, SearchImageFromList(roleName));
+                            ListViewRight.Items[row].SubItems[2].Text = perTeam.player_list[row - 8].name + '\n' + perTeam.player_list[row - 8].role;
+                            ListViewRight.Items[row].SubItems[3].Text = perTeam.player_list[row - 8].KDA;
+                            for (int j = 0; j < perTeam.player_list[row - 8].equipments.Count; j++)
+                                ListViewRight.AddIconToSubitem(row, 5 + j, SearchImageFromList(perTeam.player_list[row - 8].equipments[j] + ".png"));
+                            ListViewRight.Items[row].SubItems[13].Text = perTeam.player_list[row - 8].incoming;
+                            ListViewRight.Items[row].SubItems[14].Text = perTeam.player_list[row - 8].farm;
+                            
+
+                        }
+                    }
+                }
+            }
+         
         }
 
         private void tbResults_TextChanged(object sender, EventArgs e)
