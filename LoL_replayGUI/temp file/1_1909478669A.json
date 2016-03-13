@@ -1,0 +1,100 @@
+{
+    "__module__": "__main__", 
+    "__class__": "Table", 
+    "player_list": [
+        {
+            "__module__": "__main__", 
+            "incoming": 9.3, 
+            "name": "原来我们心有林夕", 
+            "farm": 0, 
+            "__class__": "Player", 
+            "KDA": "1/3/17", 
+            "equipments": [
+                "3092", 
+                "2049", 
+                "1052", 
+                "3105", 
+                "3158", 
+                "1058", 
+                "3364"
+            ], 
+            "role": "Morgana", 
+            "img_src": "http://img.lolbox.duowan.com/champions/Morgana_28x28.jpg"
+        }, 
+        {
+            "__module__": "__main__", 
+            "incoming": 15.6, 
+            "name": "Douyu1555..", 
+            "farm": 68, 
+            "__class__": "Player", 
+            "KDA": "10/3/14", 
+            "equipments": [
+                "3027", 
+                "3113", 
+                "3100", 
+                "3089", 
+                "1082", 
+                "1306", 
+                "3363"
+            ], 
+            "role": "TwistedFate", 
+            "img_src": "http://img.lolbox.duowan.com/champions/TwistedFate_28x28.jpg"
+        }, 
+        {
+            "__module__": "__main__", 
+            "incoming": 14.8, 
+            "name": "少理我", 
+            "farm": 47, 
+            "__class__": "Player", 
+            "KDA": "12/5/8", 
+            "equipments": [
+                "3147", 
+                "3142", 
+                "1412", 
+                "1306", 
+                "3156", 
+                "1037", 
+                "3363"
+            ], 
+            "role": "Graves", 
+            "img_src": "http://img.lolbox.duowan.com/champions/Graves_28x28.jpg"
+        }, 
+        {
+            "__module__": "__main__", 
+            "incoming": 12.3, 
+            "name": "Q群号321173..", 
+            "farm": 64, 
+            "__class__": "Player", 
+            "KDA": "7/2/11", 
+            "equipments": [
+                "3065", 
+                "3068", 
+                "1323", 
+                "3041", 
+                "3001", 
+                "3363"
+            ], 
+            "role": "Nautilus", 
+            "img_src": "http://img.lolbox.duowan.com/champions/Nautilus_28x28.jpg"
+        }, 
+        {
+            "__module__": "__main__", 
+            "incoming": 12.3, 
+            "name": "Nei丶MissU", 
+            "farm": 71, 
+            "__class__": "Player", 
+            "KDA": "4/5/7", 
+            "equipments": [
+                "1055", 
+                "3006", 
+                "3053", 
+                "3124", 
+                "3085", 
+                "1036", 
+                "3363"
+            ], 
+            "role": "KogMaw", 
+            "img_src": "http://img.lolbox.duowan.com/champions/KogMaw_28x28.jpg"
+        }
+    ]
+}

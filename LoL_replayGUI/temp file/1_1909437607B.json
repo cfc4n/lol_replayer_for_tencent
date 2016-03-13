@@ -1,0 +1,101 @@
+{
+    "__module__": "__main__", 
+    "__class__": "Table", 
+    "player_list": [
+        {
+            "__module__": "__main__", 
+            "incoming": 12.2, 
+            "name": "最初你想要什么", 
+            "farm": 68, 
+            "__class__": "Player", 
+            "KDA": "4/6/1", 
+            "equipments": [
+                "3142", 
+                "2031", 
+                "2043", 
+                "3071", 
+                "3147", 
+                "3111", 
+                "3363"
+            ], 
+            "role": "Zed", 
+            "img_src": "http://img.lolbox.duowan.com/champions/Zed_28x28.jpg"
+        }, 
+        {
+            "__module__": "__main__", 
+            "incoming": 10.7, 
+            "name": "话你蠢还很伟大", 
+            "farm": 37, 
+            "__class__": "Player", 
+            "KDA": "6/5/3", 
+            "equipments": [
+                "1410", 
+                "3143", 
+                "1011", 
+                "1082", 
+                "3009", 
+                "3025", 
+                "3364"
+            ], 
+            "role": "Gragas", 
+            "img_src": "http://img.lolbox.duowan.com/champions/Gragas_28x28.jpg"
+        }, 
+        {
+            "__module__": "__main__", 
+            "incoming": 8.8, 
+            "name": "只怪我有弱智光环", 
+            "farm": 13, 
+            "__class__": "Player", 
+            "KDA": "2/4/10", 
+            "equipments": [
+                "3009", 
+                "2049", 
+                "3190", 
+                "3302", 
+                "3025", 
+                "3801", 
+                "3364"
+            ], 
+            "role": "Blitzcrank", 
+            "img_src": "http://img.lolbox.duowan.com/champions/Blitzcrank_28x28.jpg"
+        }, 
+        {
+            "__module__": "__main__", 
+            "incoming": 10.3, 
+            "name": "Val与你共生", 
+            "farm": 65, 
+            "__class__": "Player", 
+            "KDA": "2/7/3", 
+            "equipments": [
+                "1058", 
+                "3191", 
+                "1056", 
+                "3158", 
+                "3001", 
+                "3027", 
+                "3363"
+            ], 
+            "role": "Lissandra", 
+            "img_src": "http://img.lolbox.duowan.com/champions/Lissandra_28x28.jpg"
+        }, 
+        {
+            "__module__": "__main__", 
+            "incoming": 12.5, 
+            "name": "SupBotShe..", 
+            "farm": 73, 
+            "__class__": "Player", 
+            "KDA": "5/4/8", 
+            "equipments": [
+                "3508", 
+                "2043", 
+                "1055", 
+                "3072", 
+                "3006", 
+                "3046", 
+                "3363"
+            ], 
+            "role": "Lucian", 
+            "img_src": "http://img.lolbox.duowan.com/champions/Lucian_28x28.jpg"
+        }
+    ]
+}

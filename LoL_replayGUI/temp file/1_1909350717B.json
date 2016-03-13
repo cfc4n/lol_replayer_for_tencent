@@ -1,0 +1,99 @@
+{
+    "__module__": "__main__", 
+    "__class__": "Table", 
+    "player_list": [
+        {
+            "__module__": "__main__", 
+            "incoming": 6.6, 
+            "name": "1avenger", 
+            "farm": 56, 
+            "__class__": "Player", 
+            "KDA": "1/8/4", 
+            "equipments": [
+                "3042", 
+                "2010", 
+                "3025", 
+                "1001", 
+                "1055", 
+                "3363"
+            ], 
+            "role": "Ezreal", 
+            "img_src": "http://img.lolbox.duowan.com/champions/Ezreal_28x28.jpg"
+        }, 
+        {
+            "__module__": "__main__", 
+            "incoming": 6.6, 
+            "name": "杀我干嘛我是宝宝", 
+            "farm": 68, 
+            "__class__": "Player", 
+            "KDA": "1/7/2", 
+            "equipments": [
+                "1055", 
+                "3156", 
+                "2031", 
+                "3134", 
+                "1036", 
+                "3009", 
+                "3363"
+            ], 
+            "role": "Quinn", 
+            "img_src": "http://img.lolbox.duowan.com/champions/Quinn_28x28.jpg"
+        }, 
+        {
+            "__module__": "__main__", 
+            "incoming": 9.4, 
+            "name": "最初你想要什么", 
+            "farm": 86, 
+            "__class__": "Player", 
+            "KDA": "3/1/2", 
+            "equipments": [
+                "1058", 
+                "1052", 
+                "1056", 
+                "3001", 
+                "3198", 
+                "3158", 
+                "3363"
+            ], 
+            "role": "Viktor", 
+            "img_src": "http://img.lolbox.duowan.com/champions/Viktor_28x28.jpg"
+        }, 
+        {
+            "__module__": "__main__", 
+            "incoming": 5.5, 
+            "name": "痛证明心还在", 
+            "farm": 4, 
+            "__class__": "Player", 
+            "KDA": "1/5/4", 
+            "equipments": [
+                "3092", 
+                "2049", 
+                "1082", 
+                "3009", 
+                "2043", 
+                "3364"
+            ], 
+            "role": "Janna", 
+            "img_src": "http://img.lolbox.duowan.com/champions/Janna_28x28.jpg"
+        }, 
+        {
+            "__module__": "__main__", 
+            "incoming": 7.0, 
+            "name": "战场上的键盘手i", 
+            "farm": 35, 
+            "__class__": "Player", 
+            "KDA": "2/3/1", 
+            "equipments": [
+                "3134", 
+                "2031", 
+                "1412", 
+                "3009", 
+                "1042", 
+                "1036", 
+                "3363"
+            ], 
+            "role": "Graves", 
+            "img_src": "http://img.lolbox.duowan.com/champions/Graves_28x28.jpg"
+        }
+    ]
+}

@@ -1,0 +1,99 @@
+{
+    "__module__": "__main__", 
+    "__class__": "Table", 
+    "player_list": [
+        {
+            "__module__": "__main__", 
+            "incoming": 6.7, 
+            "name": "邓奈奈的男朋友", 
+            "farm": 82, 
+            "__class__": "Player", 
+            "KDA": "0/3/1", 
+            "equipments": [
+                "2015", 
+                "3158", 
+                "3508", 
+                "1042", 
+                "1055", 
+                "3363"
+            ], 
+            "role": "Lucian", 
+            "img_src": "http://img.lolbox.duowan.com/champions/Lucian_28x28.jpg"
+        }, 
+        {
+            "__module__": "__main__", 
+            "incoming": 4.2, 
+            "name": "上单小公主", 
+            "farm": 0, 
+            "__class__": "Player", 
+            "KDA": "0/2/2", 
+            "equipments": [
+                "1033", 
+                "2049", 
+                "1028", 
+                "3158", 
+                "3301", 
+                "1082", 
+                "3340"
+            ], 
+            "role": "Soraka", 
+            "img_src": "http://img.lolbox.duowan.com/champions/Soraka_28x28.jpg"
+        }, 
+        {
+            "__module__": "__main__", 
+            "incoming": 6.7, 
+            "name": "Night丶杀神风", 
+            "farm": 44, 
+            "__class__": "Player", 
+            "KDA": "1/2/2", 
+            "equipments": [
+                "2043", 
+                "1036", 
+                "1408", 
+                "3155", 
+                "1028", 
+                "3009", 
+                "3340"
+            ], 
+            "role": "LeeSin", 
+            "img_src": "http://img.lolbox.duowan.com/champions/LeeSin_28x28.jpg"
+        }, 
+        {
+            "__module__": "__main__", 
+            "incoming": 6.6, 
+            "name": "魂牵梦萦琪宝宝c", 
+            "farm": 71, 
+            "__class__": "Player", 
+            "KDA": "1/5/2", 
+            "equipments": [
+                "3001", 
+                "1056", 
+                "3009", 
+                "1082", 
+                "3113", 
+                "3057", 
+                "3363"
+            ], 
+            "role": "TwistedFate", 
+            "img_src": "http://img.lolbox.duowan.com/champions/TwistedFate_28x28.jpg"
+        }, 
+        {
+            "__module__": "__main__", 
+            "incoming": 6.9, 
+            "name": "梦楠的WASABI", 
+            "farm": 56, 
+            "__class__": "Player", 
+            "KDA": "4/2/1", 
+            "equipments": [
+                "2033", 
+                "3078", 
+                "3067", 
+                "3009", 
+                "1033", 
+                "3363"
+            ], 
+            "role": "Irelia", 
+            "img_src": "http://img.lolbox.duowan.com/champions/Irelia_28x28.jpg"
+        }
+    ]
+}

@@ -1,0 +1,99 @@
+{
+    "__module__": "__main__", 
+    "__class__": "Table", 
+    "player_list": [
+        {
+            "__module__": "__main__", 
+            "incoming": 9.5, 
+            "name": "从未想过不玩天使", 
+            "farm": 85, 
+            "__class__": "Player", 
+            "KDA": "0/2/9", 
+            "equipments": [
+                "3140", 
+                "3124", 
+                "1001", 
+                "3115", 
+                "1056", 
+                "3363"
+            ], 
+            "role": "Kayle", 
+            "img_src": "http://img.lolbox.duowan.com/champions/Kayle_28x28.jpg"
+        }, 
+        {
+            "__module__": "__main__", 
+            "incoming": 9.7, 
+            "name": "哔咚哔咚萧大王", 
+            "farm": 70, 
+            "__class__": "Player", 
+            "KDA": "3/1/5", 
+            "equipments": [
+                "3025", 
+                "3001", 
+                "1056", 
+                "1011", 
+                "3009", 
+                "1031", 
+                "3363"
+            ], 
+            "role": "Nautilus", 
+            "img_src": "http://img.lolbox.duowan.com/champions/Nautilus_28x28.jpg"
+        }, 
+        {
+            "__module__": "__main__", 
+            "incoming": 11.7, 
+            "name": "烙印m1nezKs", 
+            "farm": 66, 
+            "__class__": "Player", 
+            "KDA": "9/2/6", 
+            "equipments": [
+                "1055", 
+                "1301", 
+                "1037", 
+                "3508", 
+                "3094", 
+                "1038", 
+                "3363"
+            ], 
+            "role": "Lucian", 
+            "img_src": "http://img.lolbox.duowan.com/champions/Lucian_28x28.jpg"
+        }, 
+        {
+            "__module__": "__main__", 
+            "incoming": 7.3, 
+            "name": "S6丶阿里", 
+            "farm": 9, 
+            "__class__": "Player", 
+            "KDA": "0/3/17", 
+            "equipments": [
+                "2049", 
+                "3401", 
+                "3057", 
+                "3024", 
+                "1306", 
+                "3364"
+            ], 
+            "role": "Alistar", 
+            "img_src": "http://img.lolbox.duowan.com/champions/Alistar_28x28.jpg"
+        }, 
+        {
+            "__module__": "__main__", 
+            "incoming": 12.6, 
+            "name": "祖安豹征战一区", 
+            "farm": 41, 
+            "__class__": "Player", 
+            "KDA": "12/0/6", 
+            "equipments": [
+                "1414", 
+                "3158", 
+                "3027", 
+                "3025", 
+                "1058", 
+                "1052", 
+                "3340"
+            ], 
+            "role": "Nidalee", 
+            "img_src": "http://img.lolbox.duowan.com/champions/Nidalee_28x28.jpg"
+        }
+    ]
+}
