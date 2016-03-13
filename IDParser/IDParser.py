@@ -17,8 +17,9 @@ if __name__ == '__main__':
     file = open('ID.json', 'w')
     
     serverName = '电信一'
-    playerName = tradition2simple(sys.argv[1].decode('big5').encode('utf-8'))
-    #playerName = '我很厉害会发光哟'
+    #playerName = tradition2simple(sys.argv[1].decode('big5').encode('utf-8'))
+    playerName = sys.argv[1]
+    #playerName = '龙珠TV丶黑骨'
     input_url = "http://lolbox.duowan.com/matchList.php?" + 'serverName=' + serverName + "&playerName=" + playerName
 
     r = urllib2.urlopen(input_url)
