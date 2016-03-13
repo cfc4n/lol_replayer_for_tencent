@@ -373,7 +373,7 @@ namespace WinGUITest1
         private void lvwBooks_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            if (lvwBooks.SelectedItems[0] != null) MessageBox.Show(lvwBooks.SelectedItems[0].Group.ToString());
+            if (lvwBooks.SelectedItems.Count > 1) MessageBox.Show(lvwBooks.SelectedItems[0].Group.ToString());
 
         }
 
@@ -471,7 +471,7 @@ namespace WinGUITest1
 
         private void ListViewRight_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (ListViewRight.SelectedItems.Count> 0) ListViewRight.Items[ListViewRight.SelectedItems[0].Index].SubItems[14].Text = "hello world";
         }
 
         private int SearchImageFromList(string HeroName) 
