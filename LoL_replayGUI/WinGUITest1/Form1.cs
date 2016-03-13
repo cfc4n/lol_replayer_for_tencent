@@ -29,8 +29,17 @@ namespace WinGUITest1
         private void Form1_Load(object sender, EventArgs e)
         {
             
-            /*#region ListViewLeft
-            lvwBooks.Groups.Add(new ListViewGroup("1", HorizontalAlignment.Left));
+            #region ListViewLeft
+            lvwBooks.SmallImageList = Lol_heros;
+            lvwBooks.ShowSubItemIcons(true);
+            // Make the column headers.
+            lvwBooks.MakeColumnHeaders(
+                "Hero1", 55, HorizontalAlignment.Right,
+                "Hero2", 55, HorizontalAlignment.Left,
+                "Hero3", 55, HorizontalAlignment.Left,
+                "Hero4", 55, HorizontalAlignment.Left,
+                "Hero5", 55, HorizontalAlignment.Right);
+            /*lvwBooks.Groups.Add(new ListViewGroup("1", HorizontalAlignment.Left));
             lvwBooks.Groups.Add(new ListViewGroup("2", HorizontalAlignment.Left));
             lvwBooks.Groups.Add(new ListViewGroup("3", HorizontalAlignment.Left));
             
@@ -68,9 +77,9 @@ namespace WinGUITest1
                 }
 
                 if (r % 2 == 1) k++;
-            }
+            }*/
             #endregion
-            */
+            
             
 
 #region ListViewRight
@@ -196,7 +205,6 @@ namespace WinGUITest1
             // Create an instance of the open file dialog box.
             FolderBrowserDialog openFileDialog1 = new FolderBrowserDialog();
 
-            int size = -1;
             DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
             if (result == DialogResult.OK) // Test result.
             {
@@ -208,7 +216,7 @@ namespace WinGUITest1
                     tbResults.Text = path;
 
                     string[] files = Directory.GetFiles(openFileDialog1.SelectedPath);
-                    int cnt = 0;
+                    int cnt = 0, tmp_cnt = 0;
                     foreach (string file in files)
                     {
                         string fileName = Path.GetFileNameWithoutExtension(file);
@@ -219,17 +227,6 @@ namespace WinGUITest1
                         {
                             String label = fileName;
                             lvwBooks.Groups.Add(new ListViewGroup(label, HorizontalAlignment.Left));
-                            lvwBooks.SmallImageList = Lol_heros;
-                            lvwBooks.ShowSubItemIcons(true);
-                            // Make the column headers.
-                            lvwBooks.MakeColumnHeaders(
-                                "Hero1", 55, HorizontalAlignment.Right,
-                                "Hero2", 55, HorizontalAlignment.Left,
-                                "Hero3", 55, HorizontalAlignment.Left,
-                                "Hero4", 55, HorizontalAlignment.Left,
-                                "Hero5", 55, HorizontalAlignment.Right);
-                            
-                            int row = 0;
                             
                             foreach (string jsonFile in files)
                             {
@@ -241,64 +238,32 @@ namespace WinGUITest1
 
                                     using (StreamReader r = new StreamReader(jsonFile))
                                     {
-                                        int k = 0;
                                         string json = r.ReadToEnd();
                                        
                                         Team perTeam = JsonConvert.DeserializeObject<Team>(json);
 
-
                                         lvwBooks.AddRow("", "", "", "", ""); // empty
                                         
-
-                                        // Add data rows.
-                                        
-                                        //lvwBooks.AddRow("", "", "", "", "");
-                                        
                                         // Add icons to the sub-items.
-                                        for (int i = 0; i < lvwBooks.Items.Count; i++)
+                                        for (int i = tmp_cnt; i < lvwBooks.Items.Count; i++)
                                         {
                                             // Set the main item's image index.
                                             int index = SearchImageFromList(perTeam.player_list[0].role + ".png");
                                             lvwBooks.Items[i].ImageIndex = index;
                                            // lvwBooks.Items[i].ImageKey = "Annie.png";
                                             Debug.Write(cnt);
-                                            lvwBooks.Items[i].Group = lvwBooks.Groups[k];
-                                            // Set the sub-item indices.
-                                            /*for (int c = 0; c < lvwBooks.Columns.Count; c++)
-                                            {
-                                                lvwBooks.AddIconToSubitem(i, c, c);
-                                            }*/
+                                            lvwBooks.Items[i].Group = lvwBooks.Groups[tmp_cnt / 2];
                                             
                                             for (int c = 1; c < lvwBooks.Columns.Count; c++)
                                             {
                                                 //lvwBooks.Items[k].ImageKey = i.role+".png";
                                                 index = SearchImageFromList(perTeam.player_list[c].role + ".png");
-                                                lvwBooks.AddIconToSubitem(row, c, index);
-
-                                               
-
+                                                lvwBooks.AddIconToSubitem(i, c, index);
 
                                             }
-
-                                            if (i% 2 == 1) k++;
                                         }
-                                        /*int k = 0;
-
-                                        lvwBooks.Items[row].ImageIndex = row;
-                                        lvwBooks.Items[row].Group = lvwBooks.Groups[cnt];
-                                        foreach (var i in perTeam.player_list)
-                                        {
-                                            //lvwBooks.Items[k].ImageKey = i.role+".png";
-                                            int index = SearchImageFromList(i.role + ".png");
-                                            lvwBooks.AddIconToSubitem(row, k, index);
-                                      
-                                            k++;
-                                            
-
-                                        }*/
-                                        
+                                        tmp_cnt++;                                  
                                     }
-                                    row++;
                                 }
                                 
                             }
