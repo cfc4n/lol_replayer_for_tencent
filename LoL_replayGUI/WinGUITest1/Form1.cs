@@ -23,6 +23,26 @@ namespace WinGUITest1
         public string path;
         public string[] files;
         public String groupName;
+
+        public class Player
+        {
+            public string __module__ { get; set; }
+            public string incoming { get; set; }
+            public string name { get; set; }
+            public string farm { get; set; }
+            public string __class__ { get; set; }
+            public string KDA { get; set; }
+            public List<string> equipments { get; set; }
+            public string role { get; set; }
+            public string img_src { get; set; }
+        }
+        public class Team
+        {
+            public string __module__ { get; set; }
+            public string __class__ { get; set; }
+            public List<Player> player_list { get; set; }
+        }
+
         public Form1()
         {
             InitializeComponent();
@@ -31,7 +51,7 @@ namespace WinGUITest1
         private void Form1_Load(object sender, EventArgs e)
         {
             
-            #region ListViewLeft
+#region ListViewLeft
             lvwBooks.SmallImageList = Lol_heros;
             lvwBooks.ShowSubItemIcons(true);
             // Make the column headers.
@@ -80,10 +100,8 @@ namespace WinGUITest1
 
                 if (r % 2 == 1) k++;
             }*/
-            #endregion
+#endregion
             
-            
-
 #region ListViewRight
 
             
@@ -131,70 +149,90 @@ namespace WinGUITest1
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        /// <summary> Play Replay Video
+        /// /// </summary>
         private void button1_Click_1(object sender, EventArgs e) //play video
         {
+            if (path == null) return;
             Thread sample = new Thread(startLoLReplay);
             sample.Start();
             Thread.Sleep(1000 * 20);
             Process[] pArr = new Process[20];
             pArr = Process.GetProcessesByName("League of Legends");
-            MessageBox.Show(pArr.Length.ToString());
+            //MessageBox.Show(pArr.Length.ToString());
             while (pArr.Length > 0) {
                 pArr = Process.GetProcessesByName("League of Legends");
             };
             sample.Abort();
-            MessageBox.Show("abort LoL replay thread");
+            //MessageBox.Show("abort LoL replay thread");
             pArr = Process.GetProcessesByName("launcher");
-            MessageBox.Show(pArr.Length.ToString()+" exe files");
+            //MessageBox.Show(pArr.Length.ToString()+" exe files");
             for(int i = 0 ; i < pArr.Length ; i++){
                 pArr[i].Kill();
             }
+
             
         }
-        
 
-        public class Player
+        /// <summary> Lol replay thread
+        /// </summary>
+        void startLoLReplay()
         {
-            public string __module__ { get; set; }
-            public string incoming { get; set; }
-            public string name { get; set; }
-            public string farm { get; set; }
-            public string __class__ { get; set; }
-            public string KDA { get; set; }
-            public List<string> equipments { get; set; }
-            public string role { get; set; }
-            public string img_src { get; set; }
-        }
-        public class Team
-        {
-            public string __module__ { get; set; }
-            public string __class__ { get; set; }
-            public List<Player> player_list { get; set; }
+            Process p = new Process();
+            // FileName 是要執行的檔案
+            //playprocess.StartInfo.FileName = @"C:\Users\Blurry\Desktop\testscript.sh";
+            //playprocess.Start();
+            p.StartInfo.FileName = "cmd.exe";
+            p.StartInfo.UseShellExecute = false;
+            p.StartInfo.RedirectStandardInput = true;
+            p.StartInfo.RedirectStandardOutput = true;
+            p.StartInfo.RedirectStandardError = true;
+            p.StartInfo.CreateNoWindow = true; //不跳出cmd視窗
+            string strOutput = null;
+
+            try
+            {
+                p.Start();
+                StreamWriter sw = p.StandardInput;
+                char [] tmp = path.ToCharArray();
+                //sw.WriteLine("dir /w");
+                if (tmp[0] != 'C') sw.WriteLine(@"" + tmp[0] + ":");
+                //sw.WriteLine(@"E:");
+                sw.WriteLine(@"cd " + path);
+                sw.WriteLine(@"launcher.exe -f " + groupName + ".ob");
+                p.StandardInput.WriteLine("exit");
+                strOutput = p.StandardOutput.ReadToEnd();//匯出整個執行過程
+                MessageBox.Show(strOutput);
+                p.WaitForExit();
+                p.Close();
+
+
+            }
+            catch (Exception ex)
+            {
+                strOutput = ex.Message;
+            }
+
         }
 
-        private void button2_Click(object sender, EventArgs e) //Choose folder
+        /// <summary> Choose folder and set left listview
+        /// </summary>
+        private void button2_Click(object sender, EventArgs e) 
         {
             // Create an instance of the open file dialog box.
             FolderBrowserDialog openFileDialog1 = new FolderBrowserDialog();
 
+            
             DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
             if (result == DialogResult.OK) // Test result.
             {
+
+                // clean listview first
+                foreach (ListViewItem eachItem in lvwBooks.Items)
+                {
+                    lvwBooks.Items.Remove(eachItem);
+                }
+
                 //string file = openFileDialog1.SelectedPath;
                 try
                 {
@@ -212,6 +250,10 @@ namespace WinGUITest1
                         
                         if (String.Compare(isOb, ".ob") == 0)
                         {
+                            /*
+                             TODO :: Parse from .ob file
+                             */
+
                             String label = fileName;
                             lvwBooks.Groups.Add(new ListViewGroup(label, HorizontalAlignment.Left));
                             String jsonFile = fileName + 'A';
@@ -294,89 +336,34 @@ namespace WinGUITest1
 
         }
 
-        void startLoLReplay() {
-            Process p = new Process();
-            // FileName 是要執行的檔案
-            //playprocess.StartInfo.FileName = @"C:\Users\Blurry\Desktop\testscript.sh";
-            //playprocess.Start();
-            p.StartInfo.FileName = "cmd.exe";
-            p.StartInfo.UseShellExecute = false;
-            p.StartInfo.RedirectStandardInput = true;
-            p.StartInfo.RedirectStandardOutput = true;
-            p.StartInfo.RedirectStandardError = true;
-            p.StartInfo.CreateNoWindow = true; //不跳出cmd視窗
-            string strOutput = null;
-
-            try
-            {
-                p.Start();
-                StreamWriter sw = p.StandardInput;
-                //sw.WriteLine("dir /w");
-               // sw.WriteLine(@"E:");
-                sw.WriteLine(@"cd "+path);
-                sw.WriteLine(@"launcher.exe -f "+groupName+".ob");
-                p.StandardInput.WriteLine("exit");
-                strOutput = p.StandardOutput.ReadToEnd();//匯出整個執行過程
-                MessageBox.Show(strOutput);
-                p.WaitForExit();
-                p.Close();
-                
-
-            }
-            catch (Exception ex)
-            {
-                strOutput = ex.Message;
-            }
-        
-        }
-
-
+        /// <summary> Test for ID parser
+        /// </summary>
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-
+            //string name = "龙珠TV丶黑骨";
+            string name = "最初你想要什么";
+            string strPath = @"C:\Users\Blurry\Documents\lol_replayer_for_tencent\IDParser\dist";
+            //System.IO.File.WriteAllText(strPath + strUser + ".txt", text);
+            ProcessStartInfo psi = new ProcessStartInfo();
+            psi.FileName = Path.GetFileName(strPath + @"\IDParser.exe");
+            psi.WorkingDirectory = Path.GetDirectoryName(strPath + @"\IDParser.exe");
+            psi.Arguments = " " + name;
+            Process.Start(psi);
         }
-
-        private void listView2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox51_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-       /* private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-            textBox3.BackColor = pictureBox1.BackColor;
-        }*/
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void pictureBox105_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        /// <summary> Left ListView loading, take data from .ob and .json file
+        /// </summary>
         private void lvwBooks_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-<<<<<<< HEAD
-            if (lvwBooks.SelectedItems.Count > 1) MessageBox.Show(lvwBooks.SelectedItems[0].Group.ToString());
-=======
+
+            if (lvwBooks.SelectedItems.Count < 1) return; 
+
             //ListViewRight.Clear();
             //if (lvwBooks.SelectedItems[0] != null) MessageBox.Show(lvwBooks.SelectedItems[0].Group.ToString());
             groupName=lvwBooks.SelectedItems[0].Group.ToString();
@@ -400,7 +387,7 @@ namespace WinGUITest1
                         string json = r.ReadToEnd();
                         //Debug.Write(json);
                         Team perTeam = JsonConvert.DeserializeObject<Team>(json);
->>>>>>> 3f19d025e4d5b2bf9b420a8554027add222a7434
+
 
                         for (row = 1; row < 6; row++)
                         {
@@ -462,6 +449,10 @@ namespace WinGUITest1
 
         }
 
+        /// <summary> Set Background transparent 
+        /// </summary>
+        /// <param name="img"></param>
+        /// <returns></returns>
         private unsafe static GraphicsPath subGraphicsPath(Image img)
         {
 
@@ -482,15 +473,11 @@ namespace WinGUITest1
 
             for (int Y = 0; Y < height; Y++)
             {
-
                 for (int X = 0; X < width; X++)
-
                 {
-
                     if (start == -1 && (p[0] != p0 || p[1] != p1 || p[2] != p2) ) //如果 之前的点没有不透明 且 不透明
                     { 
                         start = X; //记录这个点
-
                     }
                     else if (start > -1 && (p[0] == p0 && p[1] == p1 && p[2] == p2)) //如果 之前的点是不透明 且 透明
                     {
@@ -504,23 +491,17 @@ namespace WinGUITest1
                         start = -1;
                     }
                     p += 3; //下一个内存地址
-
                 }
-
                 p += offset;
-
             }
-
             bitmap.UnlockBits(bmData);
             bitmap.Dispose();
 
             // 返回计算出来的不透明图片路径
             return g;
-
         }
 
-        /// <summary>
-        /// 调用此函数后使图片透明
+        /// <summary> 调用此函数后使图片透明
         /// </summary>
         /// <param name="control">需要处理的控件</param>
         /// <param name="img">控件的背景或图片，如PictureBox.Image
@@ -533,31 +514,24 @@ namespace WinGUITest1
                 return;
             control.Region = new Region(g);
         }
-
-        private void pictureBox4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox11_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        
+        /// <summary> Right ListView EventHandler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ListViewRight_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ListViewRight.SelectedItems.Count> 0) ListViewRight.Items[ListViewRight.SelectedItems[0].Index].SubItems[14].Text = "hello world";
+            //if (ListViewRight.SelectedItems.Count> 0) ListViewRight.Items[ListViewRight.SelectedItems[0].Index].SubItems[14].Text = "hello world";
         }
 
-        private int SearchImageFromList(string HeroName) 
+        /// <summary> Search image from imagelist (Lol_heros)
+        /// </summary>
+        /// <param name="HeroName"></param>
+        /// <returns></returns>
+        private int SearchImageFromList(string Name) 
         {
             for (int i = 0; i < Lol_heros.Images.Count; i++)
-                if (Lol_heros.Images.Keys[i] == HeroName)
+                if (Lol_heros.Images.Keys[i] == Name)
                     return i;
 
             return -1;
