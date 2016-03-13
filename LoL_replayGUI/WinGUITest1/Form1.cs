@@ -13,11 +13,14 @@ using System.Threading;
 using howto_listview_display_subitem_icons;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace WinGUITest1
 {
     public partial class Form1 : Form
     {
+        public string path;
         public Form1()
         {
             InitializeComponent();
@@ -25,11 +28,12 @@ namespace WinGUITest1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
-            #region ListViewLeft
+            
+            /*#region ListViewLeft
             lvwBooks.Groups.Add(new ListViewGroup("1", HorizontalAlignment.Left));
             lvwBooks.Groups.Add(new ListViewGroup("2", HorizontalAlignment.Left));
             lvwBooks.Groups.Add(new ListViewGroup("3", HorizontalAlignment.Left));
+            
             // Start with the last View (Details) selected.
             lvwBooks.SmallImageList = Lol_heros;
             lvwBooks.ShowSubItemIcons(true);
@@ -40,7 +44,7 @@ namespace WinGUITest1
                 "Hero3", 55, HorizontalAlignment.Left,
                 "Hero4", 55, HorizontalAlignment.Left,
                 "Hero5", 55, HorizontalAlignment.Right);
-
+            
             // Add data rows.
             lvwBooks.AddRow("", "", "", "", "");
             lvwBooks.AddRow("", "", "", "", "");
@@ -48,7 +52,7 @@ namespace WinGUITest1
             lvwBooks.AddRow("", "", "", "", "");
             lvwBooks.AddRow("", "", "", "", "");
             lvwBooks.AddRow("", "", "", "", ""); // empty
-
+            
             int k = 0;
             // Add icons to the sub-items.
             for (int r = 0; r < lvwBooks.Items.Count; r++)
@@ -66,8 +70,8 @@ namespace WinGUITest1
                 if (r % 2 == 1) k++;
             }
             #endregion
-
-
+            */
+            
 
 #region ListViewRight
 
@@ -168,7 +172,26 @@ namespace WinGUITest1
             
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        public class Player
+        {
+            public string __module__ { get; set; }
+            public double incoming { get; set; }
+            public string name { get; set; }
+            public int farm { get; set; }
+            public string __class__ { get; set; }
+            public string KDA { get; set; }
+            public List<string> equipments { get; set; }
+            public string role { get; set; }
+            public string img_src { get; set; }
+        }
+        public class Team
+        {
+            public string __module__ { get; set; }
+            public string __class__ { get; set; }
+            public List<Player> player_list { get; set; }
+        }
+
+        private void button2_Click(object sender, EventArgs e) //Choose folder
         {
             // Create an instance of the open file dialog box.
             FolderBrowserDialog openFileDialog1 = new FolderBrowserDialog();
@@ -181,14 +204,128 @@ namespace WinGUITest1
                 try
                 {
                     //string text = File.ReadAllText(file);
-                    string path = openFileDialog1.SelectedPath;
+                    path = openFileDialog1.SelectedPath;
                     tbResults.Text = path;
+
+                    string[] files = Directory.GetFiles(openFileDialog1.SelectedPath);
+                    int cnt = 0;
+                    foreach (string file in files)
+                    {
+                        string fileName = Path.GetFileNameWithoutExtension(file);
+                        string isOb = Path.GetExtension(file);
+                        //Debug.WriteLine(isOb);
+                        
+                        if (String.Compare(isOb, ".ob") == 0)
+                        {
+                            String label = fileName;
+                            lvwBooks.Groups.Add(new ListViewGroup(label, HorizontalAlignment.Left));
+                            lvwBooks.SmallImageList = Lol_heros;
+                            lvwBooks.ShowSubItemIcons(true);
+                            // Make the column headers.
+                            lvwBooks.MakeColumnHeaders(
+                                "Hero1", 55, HorizontalAlignment.Right,
+                                "Hero2", 55, HorizontalAlignment.Left,
+                                "Hero3", 55, HorizontalAlignment.Left,
+                                "Hero4", 55, HorizontalAlignment.Left,
+                                "Hero5", 55, HorizontalAlignment.Right);
+                            
+                            int row = 0;
+                            
+                            foreach (string jsonFile in files)
+                            {
+  
+                                
+                                string isJson = Path.GetExtension(jsonFile);
+                                if (String.Compare(isJson, ".json") == 0)
+                                {
+
+                                    using (StreamReader r = new StreamReader(jsonFile))
+                                    {
+                                        int k = 0;
+                                        string json = r.ReadToEnd();
+                                       
+                                        Team perTeam = JsonConvert.DeserializeObject<Team>(json);
+
+
+                                        lvwBooks.AddRow("", "", "", "", ""); // empty
+                                        
+
+                                        // Add data rows.
+                                        
+                                        //lvwBooks.AddRow("", "", "", "", "");
+                                        
+                                        // Add icons to the sub-items.
+                                        for (int i = 0; i < lvwBooks.Items.Count; i++)
+                                        {
+                                            // Set the main item's image index.
+                                            int index = SearchImageFromList(perTeam.player_list[0].role + ".png");
+                                            lvwBooks.Items[i].ImageIndex = index;
+                                           // lvwBooks.Items[i].ImageKey = "Annie.png";
+                                            Debug.Write(cnt);
+                                            lvwBooks.Items[i].Group = lvwBooks.Groups[k];
+                                            // Set the sub-item indices.
+                                            /*for (int c = 0; c < lvwBooks.Columns.Count; c++)
+                                            {
+                                                lvwBooks.AddIconToSubitem(i, c, c);
+                                            }*/
+                                            
+                                            for (int c = 1; c < lvwBooks.Columns.Count; c++)
+                                            {
+                                                //lvwBooks.Items[k].ImageKey = i.role+".png";
+                                                index = SearchImageFromList(perTeam.player_list[c].role + ".png");
+                                                lvwBooks.AddIconToSubitem(row, c, index);
+
+                                               
+
+
+                                            }
+
+                                            if (i% 2 == 1) k++;
+                                        }
+                                        /*int k = 0;
+
+                                        lvwBooks.Items[row].ImageIndex = row;
+                                        lvwBooks.Items[row].Group = lvwBooks.Groups[cnt];
+                                        foreach (var i in perTeam.player_list)
+                                        {
+                                            //lvwBooks.Items[k].ImageKey = i.role+".png";
+                                            int index = SearchImageFromList(i.role + ".png");
+                                            lvwBooks.AddIconToSubitem(row, k, index);
+                                      
+                                            k++;
+                                            
+
+                                        }*/
+                                        
+                                    }
+                                    row++;
+                                }
+                                
+                            }
+                            cnt++;
+                        }
+                    }
+
+
+                    /*  if (lvwBooks.SelectedItems.Count > 0)
+                      {
+
+                          ListViewItem selected = lvwBooks.SelectedItems[0];
+                          string selectedFilePath = selected.Tag.ToString();
+
+                        //  PlayYourFile(selectedFilePath);
+
+                      }
+                      else
+                      {
+                          // Show a message
+                      }*/
                 }
                 catch (IOException)
                 {
                 }
             }
-            
+
         }
 
         void startLoLReplay() {
