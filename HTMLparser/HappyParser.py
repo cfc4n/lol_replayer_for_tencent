@@ -112,15 +112,16 @@ def obj2dict(obj):
     
 if __name__ == '__main__':
     # print "Welcome to HappyParser"
-    if len(sys.argv) is not 3:
+    if len(sys.argv) is not 2:
         print "usage : HappyParser.py matchId playerName"
         #return
     matchId = sys.argv[1]
-    serverName = '電信一'
-    playerName = sys.argv[2]
+    #serverName = '電信一'
+    #playerName = sys.argv[2]
     
-    input_url = "http://lolbox.duowan.com/matchList/ajaxMatchDetail2.php?" + "matchId=" + matchId + "&serverName=" + serverName + "&playerName=" + playerName + "&favorate=0"
+    #input_url = "http://lolbox.duowan.com/matchList/ajaxMatchDetail2.php?" + "matchId=" + matchId + "&serverName=" + serverName + "&playerName=" + playerName + "&favorate=0"
     #print input_url
+    input_url = "http://lolbox.duowan.com/matchList/ajaxMatchDetail2.php?" + "matchId=" + matchId 
     
     #r = urllib2.urlopen("http://lolbox.duowan.com/matchList/ajaxMatchDetail2.php?matchId=17069455328&serverName=%E7%94%B5%E4%BF%A1%E4%B8%80&playerName=%E6%88%91%E5%BE%88%E5%8E%89%E5%AE%B3%E4%BC%9A%E5%8F%91%E5%85%89%E5%93%9F&favorate=0")
     r = urllib2.urlopen(input_url)
@@ -143,14 +144,14 @@ if __name__ == '__main__':
     
     # write game information to the info.out
     #file = codecs.open("info.out", 'w', 'utf-8')
-    file = open("info.out", 'w')
+    file = open("info.json", 'w')
     file.write(gameInfo_str)
     file.close()
     # write the information of table A to the tableA.out
-    file = open("tableA.out", 'w')
+    file = open("tableA.json", 'w')
     file.write(tableA_str)
     file.close()
     # write the information of table B to the tableB.out
-    file = open("tableB.out", 'w')
+    file = open("tableB.json", 'w')
     file.write(tableB_str)
     file.close()

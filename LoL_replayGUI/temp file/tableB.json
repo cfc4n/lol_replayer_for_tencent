@@ -5,7 +5,7 @@
         {
             "__module__": "__main__", 
             "incoming": 13.8, 
-            "name": "§A¬İ¤£?ªº·Q©À", 
+            "name": "ä½ çœ‹ä¸è§çš„æƒ³å¿µ", 
             "farm": 75, 
             "__class__": "Player", 
             "KDA": "5/5/7", 
@@ -24,7 +24,7 @@
         {
             "__module__": "__main__", 
             "incoming": 10.8, 
-            "name": "§Ú«Ü?®`??¥ú?", 
+            "name": "æˆ‘å¾ˆå‰å®³ä¼šå‘å…‰å“Ÿ", 
             "farm": 36, 
             "__class__": "Player", 
             "KDA": "4/6/4", 
@@ -43,7 +43,7 @@
         {
             "__module__": "__main__", 
             "incoming": 9.4, 
-            "name": "¦n·Q©ê??³áT3T", 
+            "name": "å¥½æƒ³æŠ±é²¨é±¼å–”T3T", 
             "farm": 0, 
             "__class__": "Player", 
             "KDA": "2/8/9", 
@@ -62,7 +62,7 @@
         {
             "__module__": "__main__", 
             "incoming": 10.4, 
-            "name": "¤£º@?´NTnT", 
+            "name": "ä¸æ„¿å°†å°±TnT", 
             "farm": 40, 
             "__class__": "Player", 
             "KDA": "3/10/1", 
@@ -80,7 +80,7 @@
         {
             "__module__": "__main__", 
             "incoming": 13.1, 
-            "name": "Neil¤pÀq«´a", 
+            "name": "Neilå°é»˜å¥‘a", 
             "farm": 64, 
             "__class__": "Player", 
             "KDA": "8/9/4", 
