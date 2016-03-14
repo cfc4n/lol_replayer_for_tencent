@@ -124,8 +124,8 @@ namespace WinGUITest1
                 "Accessories5", 47, HorizontalAlignment.Center,
                 "Accessories6", 47, HorizontalAlignment.Center,
                 "Accessories7", 47, HorizontalAlignment.Center,
-                "Empty", 15, HorizontalAlignment.Right,
-                "Money", 60, HorizontalAlignment.Left,
+                "Empty", 10, HorizontalAlignment.Right,
+                "Money", 65, HorizontalAlignment.Left,
                 "Value", 30, HorizontalAlignment.Left);
             
             // 新增資料部分, empty為強制換行(符合背景格式)
@@ -398,7 +398,7 @@ namespace WinGUITest1
                             ListViewRight.Items[row].SubItems[3].Text = perTeam.player_list[row - 1].KDA;
                             for(int j=0;j<perTeam.player_list[row-1].equipments.Count;j++)
                                 ListViewRight.AddIconToSubitem(row, 5+j, SearchImageFromList(perTeam.player_list[row - 1].equipments[j]+".png"));
-                            ListViewRight.Items[row].SubItems[13].Text = perTeam.player_list[row - 1].incoming;
+                            ListViewRight.Items[row].SubItems[13].Text = perTeam.player_list[row - 1].incoming+'k';
                             ListViewRight.Items[row].SubItems[14].Text = perTeam.player_list[row - 1].farm;
                             //ListViewRight.AddToSubitem(row, 1, SearchImageFromList(roleName));
 
@@ -433,7 +433,7 @@ namespace WinGUITest1
                             ListViewRight.Items[row].SubItems[3].Text = perTeam.player_list[row - 8].KDA;
                             for (int j = 0; j < perTeam.player_list[row - 8].equipments.Count; j++)
                                 ListViewRight.AddIconToSubitem(row, 5 + j, SearchImageFromList(perTeam.player_list[row - 8].equipments[j] + ".png"));
-                            ListViewRight.Items[row].SubItems[13].Text = perTeam.player_list[row - 8].incoming;
+                            ListViewRight.Items[row].SubItems[13].Text = perTeam.player_list[row - 8].incoming+'k';
                             ListViewRight.Items[row].SubItems[14].Text = perTeam.player_list[row - 8].farm;
                             
 

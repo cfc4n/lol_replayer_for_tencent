@@ -462,7 +462,7 @@
             this.button1.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Transparent;
             this.button1.Image = global::WinGUITest1.Properties.Resources.play;
-            this.button1.Location = new System.Drawing.Point(1142, 672);
+            this.button1.Location = new System.Drawing.Point(1054, 672);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(64, 66);
             this.button1.TabIndex = 5;
@@ -637,14 +637,14 @@
             // ListViewRight
             // 
             this.ListViewRight.BackColor = System.Drawing.Color.SlateGray;
-            this.ListViewRight.BackgroundImage = global::WinGUITest1.Properties.Resources.newlist;
+            this.ListViewRight.BackgroundImage = global::WinGUITest1.Properties.Resources.finallist2;
             this.ListViewRight.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ListViewRight.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.ListViewRight.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.ListViewRight.LargeImageList = this.Lol_heros;
             this.ListViewRight.Location = new System.Drawing.Point(340, 56);
             this.ListViewRight.Name = "ListViewRight";
-            this.ListViewRight.Size = new System.Drawing.Size(850, 614);
+            this.ListViewRight.Size = new System.Drawing.Size(760, 614);
             this.ListViewRight.SmallImageList = this.Lol_heros;
             this.ListViewRight.TabIndex = 195;
             this.ListViewRight.UseCompatibleStateImageBehavior = false;
@@ -657,7 +657,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
             this.BackgroundImage = global::WinGUITest1.Properties.Resources.star_small;
-            this.ClientSize = new System.Drawing.Size(1214, 741);
+            this.ClientSize = new System.Drawing.Size(1123, 741);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.ListViewRight);
             this.Controls.Add(this.tbResults);
