@@ -37,11 +37,11 @@ Just for fun
 ## Installation
 
 > 觀戰所需程式：
-
-``cfc4n@cnxct:~/Project/github/lol_replayer_for_tencent$go get github.com/collinglass/mw``
-``cfc4n@cnxct:~/Project/github/lol_replayer_for_tencent$go get github.com/gorilla/mux``
-``cfc4n@cnxct:~/Project/github/lol_replayer_for_tencent$go get github.com/pborman/getopt``
-
+```
+cfc4n@cnxct:~/Project/github/lol_replayer_for_tencent$go get github.com/collinglass/mw
+cfc4n@cnxct:~/Project/github/lol_replayer_for_tencent$go get github.com/gorilla/mux
+cfc4n@cnxct:~/Project/github/lol_replayer_for_tencent$go get github.com/pborman/getopt
+```
 cd 项目目录
 
 ``cfc4n@cnxct:~/Project/github/lol_replayer_for_tencent$sh shell/build.sh``
