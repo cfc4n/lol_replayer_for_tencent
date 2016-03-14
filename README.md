@@ -4,7 +4,7 @@
 
 League Of Legends 英雄联盟，腾讯游戏助手TGP录像的解析代码，可搭建录像服务器，启动游戏进行观看录像，支援MAC OS X上觀看國服。
 除此之外，我們還提供了windows版本的GUI，透過多玩盒子API，獲取該場對戰的資訊。
-(目前仍在建構中，敬請期待)
+
 
 ## Code Example
 
