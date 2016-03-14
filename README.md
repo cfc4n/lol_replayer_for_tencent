@@ -46,7 +46,7 @@ cd 项目目录
 
 ``cfc4n@cnxct:~/Project/github/lol_replayer_for_tencent$sh shell/build.sh``
 
-``备注 windows平台需要在编译时，填写LOL游戏所在目录``
+备注 windows平台需要在编译时，填写LOL游戏所在目录
 
 > IDParser：
 ``~/lol_replayer_for_tencent/IDParser$ python setup.py py2exe``
