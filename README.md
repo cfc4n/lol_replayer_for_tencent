@@ -8,8 +8,10 @@ League Of Legends 英雄联盟，腾讯游戏助手TGP录像的解析代码，�
 
 ## Code Example
 
-你可以透過我們的GUI，也可直接透過command使用我們的project
+你可以透過我們的GUI：
+>在 ~\lol_replayer_for_tencent\LoL_replayGUI\WinGUITest1\bin\Debug 底下可以找到 WinGUITest1.exe執行
 
+也可直接透過command使用我們的project：
 >在 http://api.pallas.tgp.qq.com/core/get_ob_list 中，有很多http://ob.pallas.tgp.qq.com/ob_data/1_1789151000.ob 字样的录像文件，下载下来
 >透過這個指令，直接呼叫client端撥放replay
 
