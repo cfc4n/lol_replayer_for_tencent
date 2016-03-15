@@ -5,6 +5,14 @@
 League Of Legends 英雄联盟，腾讯游戏助手TGP录像的解析代码，可搭建录像服务器，启动游戏进行观看录像，支援MAC OS X上觀看國服。
 除此之外，我們還提供了windows版本的GUI，透過多玩盒子API，獲取該場對戰的資訊。
 
+## Install 
+
+1. 首先把LoL_replayGUI\temp file裡面的檔案, 複製到LoL的執行目錄 ex C:\Program Files (x86)\GarenaLoLTW\GameData\Apps\LoLTW
+
+2. 打開LoL_replayGUI\Win32GUITest1, 按下choose folder buttn, 選取該LoL執行目錄
+
+3. 會顯示所有再裡面的戰鬥場次, 點取場次, 可看見詳細資訊與播放 
+
 
 ## Code Example
 
