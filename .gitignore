@@ -1,6 +1,8 @@
 
 .project
 
-bin/launcher
-
+/bin/
+/LoL_replayGUI/WinGUITest1/bin/
+/LoL_replayGUI/WinGUITest1/obj/
 *.a
+*.pdb
