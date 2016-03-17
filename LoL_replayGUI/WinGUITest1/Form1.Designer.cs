@@ -467,7 +467,7 @@
             this.button1.Size = new System.Drawing.Size(64, 66);
             this.button1.TabIndex = 5;
             this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.button1.Click += new System.EventHandler(this.chooseFolderOnclick);
             // 
             // button2
             // 
@@ -480,7 +480,7 @@
             this.button2.TabIndex = 6;
             this.button2.Text = "choose folder";
             this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.chooseFolderOnclick);
             // 
             // pictureBox1
             // 

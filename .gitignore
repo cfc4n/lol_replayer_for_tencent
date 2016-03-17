@@ -6,3 +6,7 @@
 /LoL_replayGUI/WinGUITest1/obj/
 *.a
 *.pdb
+LoL_replayGUI/WinGUITest1/obj/Debug/DesignTimeResolveAssemblyReferences.cache
+LoL_replayGUI/WinGUITest1/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+LoL_replayGUI/WinGUITest1/obj/Debug/Interop.WMPLib.dll
+LoL_replayGUI/WinGUITest1/obj/Debug/WinGUITest1.csproj.FileListAbsolute.txt

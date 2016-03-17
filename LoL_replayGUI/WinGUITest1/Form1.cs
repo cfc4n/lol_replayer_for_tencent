@@ -23,6 +23,9 @@ namespace WinGUITest1
         public string path;
         public string[] files;
         public String groupName;
+        private string lolPath;
+        private string lolReplayPath;
+        private int tmp_cnt;    //计数器
 
         public class Player
         {
@@ -217,12 +220,15 @@ namespace WinGUITest1
 
         /// <summary> Choose folder and set left listview
         /// </summary>
-        private void button2_Click(object sender, EventArgs e) 
+        private void chooseFolderOnclick(object sender, EventArgs e) 
         {
             // Create an instance of the open file dialog box.
             FolderBrowserDialog openFileDialog1 = new FolderBrowserDialog();
+            openFileDialog1.Description = "請輸入LOL所在目錄";
+            openFileDialog1.RootFolder = System.Environment.SpecialFolder.MyComputer;
 
-            
+
+
             DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
             if (result == DialogResult.OK) // Test result.
             {
@@ -237,97 +243,48 @@ namespace WinGUITest1
                 try
                 {
                     //string text = File.ReadAllText(file);
-                    path = openFileDialog1.SelectedPath;
-                    tbResults.Text = path;
+                    //根据选择的文件夹路径，设置LOL根目录
+                    lolPath = openFileDialog1.SelectedPath;
 
-                    files = Directory.GetFiles(openFileDialog1.SelectedPath);
-                    int tmp_cnt = 0;
+                    //设置replays录像所在目录
+                    lolReplayPath = openFileDialog1.SelectedPath + "\\replays";
+                    tbResults.Text = lolPath;
+
+                    //获取replays 目录下文件列表
+                    files = Directory.GetFiles(lolReplayPath);
                     foreach (string file in files)
                     {
                         string fileName = Path.GetFileNameWithoutExtension(file);
                         string isOb = Path.GetExtension(file);
                         //Debug.WriteLine(isOb);
                         
-                        if (String.Compare(isOb, ".ob") == 0)
+                        if (String.Compare(isOb, ".ob") != 0)
                         {
-                            /*
-                             TODO :: Parse from .ob file
-                             */
-
-                            String label = fileName;
-                            lvwBooks.Groups.Add(new ListViewGroup(label, HorizontalAlignment.Left));
-                            String jsonFile = fileName + 'A';
-                           // Debug.Write(jsonFile);
-                            foreach (string f in files)
-                            {
-                                string jsonFileName=Path.GetFileNameWithoutExtension(f);
-                                if(String.Compare(jsonFileName,jsonFile)==0){
-                                    using (StreamReader r = new StreamReader(f))
-                                    {
-                                        string json = r.ReadToEnd();
-                                       // Debug.Write(json);
-                                        Team perTeam = JsonConvert.DeserializeObject<Team>(json);
-
-                                        lvwBooks.AddRow("", "", "", "", ""); // empty
-
-                                        // Add icons to the sub-items.
-                                        for (int i = tmp_cnt; i < lvwBooks.Items.Count; i++)
-                                        {
-                                            // Set the main item's image index.
-                                            int index = SearchImageFromList(perTeam.player_list[0].role + ".png");
-                                            lvwBooks.Items[i].ImageIndex = index;
-                                            lvwBooks.Items[i].Group = lvwBooks.Groups[tmp_cnt / 2];
-
-                                            for (int c = 1; c < lvwBooks.Columns.Count; c++)
-                                            {
-                                                index = SearchImageFromList(perTeam.player_list[c].role + ".png");
-                                                lvwBooks.AddIconToSubitem(i, c, index);
-
-                                            }
-                                        }
-                                        tmp_cnt++;
-                                    }
-                                }
-                            }
-                            jsonFile = fileName + 'B';
-                            //Debug.Write(jsonFile);
-                            foreach (string f in files)
-                            {
-                                string jsonFileName = Path.GetFileNameWithoutExtension(f);
-                                if (String.Compare(jsonFileName, jsonFile) == 0)
-                                {
-                                    using (StreamReader r = new StreamReader(f))
-                                    {
-                                        string json = r.ReadToEnd();
-                                        //Debug.Write(json);
-                                        Team perTeam = JsonConvert.DeserializeObject<Team>(json);
-
-                                        lvwBooks.AddRow("", "", "", "", ""); // empty
-
-                                        // Add icons to the sub-items.
-                                        for (int i = tmp_cnt; i < lvwBooks.Items.Count; i++)
-                                        {
-                                            // Set the main item's image index.
-                                            int index = SearchImageFromList(perTeam.player_list[0].role + ".png");
-                                            lvwBooks.Items[i].ImageIndex = index;
-                                            lvwBooks.Items[i].Group = lvwBooks.Groups[tmp_cnt / 2];
-
-                                            for (int c = 1; c < lvwBooks.Columns.Count; c++)
-                                            {
-                                                index = SearchImageFromList(perTeam.player_list[c].role + ".png");
-                                                lvwBooks.AddIconToSubitem(i, c, index);
-
-                                            }
-                                        }
-                                        tmp_cnt++;
-                                    }
-                                }
-                            }
-                                
-                                
-                            
+                            //若拓展名不是.ob ，则直接读取下一个
+                            continue;
                         }
+
+                        /*
+                         TODO :: Parse from .ob file
+                         */
+
+                        String label = fileName;
+                        lvwBooks.Groups.Add(new ListViewGroup(label, HorizontalAlignment.Left));
+
+                        //根據文件名，獲取對應文件名的json內數據
+                        String jsonFile = fileName + 'A';
+                        getJsonByObName(jsonFile);
+
+                        jsonFile = fileName + 'B';
+                        getJsonByObName(jsonFile);
+
                     }
+                    // if 目录下文件为空
+                    if (tmp_cnt <=0)
+                    {
+                        // 请先下载录像文件到replays目录下
+                    }
+                    
                 }
                 catch (IOException)
                 {
@@ -335,6 +292,39 @@ namespace WinGUITest1
             }
 
         }
+
+        private void getJsonByObName(string fileName)
+        {
+
+            string jsonFileName = lolReplayPath + "\\db\\" + fileName + ".json";
+            using (StreamReader r = new StreamReader(jsonFileName))
+            {
+                string json = r.ReadToEnd();
+                // Debug.Write(json);
+                Team perTeam = JsonConvert.DeserializeObject<Team>(json);
+
+                lvwBooks.AddRow("", "", "", "", ""); // empty
+
+                // Add icons to the sub-items.
+                for (int i = tmp_cnt; i < lvwBooks.Items.Count; i++)
+                {
+                    // Set the main item's image index.
+                    int index = SearchImageFromList(perTeam.player_list[0].role + ".png");
+                    lvwBooks.Items[i].ImageIndex = index;
+                    lvwBooks.Items[i].Group = lvwBooks.Groups[tmp_cnt / 2];
+
+                    for (int c = 1; c < lvwBooks.Columns.Count; c++)
+                    {
+                        index = SearchImageFromList(perTeam.player_list[c].role + ".png");
+                        lvwBooks.AddIconToSubitem(i, c, index);
+
+                    }
+                }
+                tmp_cnt++;
+            }
+
+        }
+
 
         /// <summary> Test for ID parser
         /// </summary>
@@ -370,78 +360,47 @@ namespace WinGUITest1
             // 新增資料部分, empty為強制換行(符合背景格式)
 
             // Debug.Write(groupName);
-            int row;
+            
+            //获取A队详情
             String jsonName = groupName + 'A';
-            foreach (string f in files)
-            {
-                string jsonFileName = Path.GetFileNameWithoutExtension(f);
-              // Debug.Write(jsonFileName);
-               // Debug.Write(groupName);
+            getDetailInfo(jsonName);
 
-                if (String.Compare(jsonFileName, jsonName) == 0)
-                {
- 
-                    //Debug.Write(jsonFileName);
-                    using (StreamReader r = new StreamReader(f))
-                    {
-                        string json = r.ReadToEnd();
-                        //Debug.Write(json);
-                        Team perTeam = JsonConvert.DeserializeObject<Team>(json);
-
-
-                        for (row = 1; row < 6; row++)
-                        {
-                            String roleName = perTeam.player_list[row-1].role + ".png";
-                            Debug.Write(roleName);
-                            ListViewRight.AddIconToSubitem(row, 1, SearchImageFromList(roleName));
-                            ListViewRight.Items[row].SubItems[2].Text = perTeam.player_list[row - 1].name + '\n' + perTeam.player_list[row - 1].role;
-                            ListViewRight.Items[row].SubItems[3].Text = perTeam.player_list[row - 1].KDA;
-                            for(int j=0;j<perTeam.player_list[row-1].equipments.Count;j++)
-                                ListViewRight.AddIconToSubitem(row, 5+j, SearchImageFromList(perTeam.player_list[row - 1].equipments[j]+".png"));
-                            ListViewRight.Items[row].SubItems[13].Text = perTeam.player_list[row - 1].incoming+'k';
-                            ListViewRight.Items[row].SubItems[14].Text = perTeam.player_list[row - 1].farm;
-                            //ListViewRight.AddToSubitem(row, 1, SearchImageFromList(roleName));
-
-                        }
-                    }
-                }
-            }
-
+            //获取B队详情
             jsonName = groupName + 'B';
-            foreach (string f in files)
+            getDetailInfo(jsonName,true);
+         
+        }
+
+        private void getDetailInfo(string fileName,bool teamB = false)
+        {
+            string jsonFileName = lolReplayPath + "\\db\\" + fileName + ".json";
+            int row;
+            int step = 0;
+            if (teamB)
             {
-                string jsonFileName = Path.GetFileNameWithoutExtension(f);
-                // Debug.Write(jsonFileName);
-                // Debug.Write(groupName);
+                step = 7;   //此处是根据你们代码理解计算出来的，我也不知道为什么 Team B的初始化时，是row = 8
+            }
+            using (StreamReader r = new StreamReader(jsonFileName))
+            {
+                string json = r.ReadToEnd();
+                Team perTeam = JsonConvert.DeserializeObject<Team>(json);
 
-                if (String.Compare(jsonFileName, jsonName) == 0)
+
+                for (row = (1 + step); row < (6+ step); row++)
                 {
-
-                    //Debug.Write(jsonFileName);
-                    using (StreamReader r = new StreamReader(f))
-                    {
-                        string json = r.ReadToEnd();
-                        //Debug.Write(json);
-                        Team perTeam = JsonConvert.DeserializeObject<Team>(json);
-
-                        for (row = 8; row < 13; row++)
-                        {
-                            String roleName = perTeam.player_list[row - 8].role + ".png";
-                            Debug.Write(roleName);
-                            ListViewRight.AddIconToSubitem(row, 1, SearchImageFromList(roleName));
-                            ListViewRight.Items[row].SubItems[2].Text = perTeam.player_list[row - 8].name + '\n' + perTeam.player_list[row - 8].role;
-                            ListViewRight.Items[row].SubItems[3].Text = perTeam.player_list[row - 8].KDA;
-                            for (int j = 0; j < perTeam.player_list[row - 8].equipments.Count; j++)
-                                ListViewRight.AddIconToSubitem(row, 5 + j, SearchImageFromList(perTeam.player_list[row - 8].equipments[j] + ".png"));
-                            ListViewRight.Items[row].SubItems[13].Text = perTeam.player_list[row - 8].incoming+'k';
-                            ListViewRight.Items[row].SubItems[14].Text = perTeam.player_list[row - 8].farm;
-                            
-
-                        }
-                    }
+                    String roleName = perTeam.player_list[row - (1+step)].role + ".png";
+                    Debug.Write(roleName);
+                    ListViewRight.AddIconToSubitem(row, 1, SearchImageFromList(roleName));
+                    ListViewRight.Items[row].SubItems[2].Text = perTeam.player_list[row - (1 + step)].name + '\n' + perTeam.player_list[row - (1 + step)].role;
+                    ListViewRight.Items[row].SubItems[3].Text = perTeam.player_list[row - (1 + step)].KDA;
+                    for (int j = 0; j < perTeam.player_list[row - (1+step)].equipments.Count; j++)
+                        ListViewRight.AddIconToSubitem(row, 5 + j, SearchImageFromList(perTeam.player_list[row - (1 + step)].equipments[j] + ".png"));
+                    ListViewRight.Items[row].SubItems[13].Text = perTeam.player_list[row - (1 + step)].incoming + 'k';
+                    ListViewRight.Items[row].SubItems[14].Text = perTeam.player_list[row - (1 + step)].farm;
+                    //ListViewRight.AddToSubitem(row, 1, SearchImageFromList(roleName));
                 }
             }
-         
+
         }
 
         private void tbResults_TextChanged(object sender, EventArgs e)
