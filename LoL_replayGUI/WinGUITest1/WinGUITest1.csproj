@@ -55,6 +55,17 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="ListViewExtensions.cs" />
+    <Compile Include="Lol\BaseEntity.cs" />
+    <Compile Include="Lol\Battle.cs" />
+    <Compile Include="Lol\ChampionInfo.cs" />
+    <Compile Include="Lol\ILolService.cs" />
+    <Compile Include="Lol\IRepository.cs" />
+    <Compile Include="Lol\ISettingService.cs" />
+    <Compile Include="Lol\LolService.cs" />
+    <Compile Include="Lol\Record.cs" />
+    <Compile Include="Lol\Setting.cs" />
+    <Compile Include="Lol\SettingService.cs" />
+    <Compile Include="Lol\SnapShot.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -187,6 +198,7 @@
   <ItemGroup>
     <None Include="Resources\finallist2.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

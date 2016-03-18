@@ -695,6 +695,9 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
+
+            // 初始化 LOL API 接口 service TODO 对其参数输入
+            //LolServ = new Lol.LolService();
         }
 
         #endregion

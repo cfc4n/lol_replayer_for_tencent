@@ -16,6 +16,8 @@ using System.Drawing.Imaging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
+using WinGUITest1.Lol;
+
 namespace WinGUITest1
 {
     public partial class Form1 : Form
@@ -26,6 +28,7 @@ namespace WinGUITest1
         private string lolPath;
         private string lolReplayPath;
         private int tmp_cnt;    //计数器
+
 
         public class Player
         {
@@ -297,6 +300,13 @@ namespace WinGUITest1
         {
 
             string jsonFileName = lolReplayPath + "\\db\\" + fileName + ".json";
+            /*
+             *TODO :: 若json不存在，则重新从网络抓取。 参考 Lol\LolService.cs  GetDataById() 函数。需要COOKIE。
+             *      预览方式：http://lol.qq.com 登录QQ ，然后 直接访问 http://api.pallas.tgp.qq.com/core/tcall?callback=getGameDetailCallback&dtag=profile&p=%5B%5B4%2C%7B%22area_id%22%3A%221%22%2C%22game_id%22%3A%221917183753%22%7D%5D%5D&t=1458284672949
+             *      参数说明：原参数为：tcall?callback=getGameDetailCallback&dtag=profile&p=[[4,{"area_id":"7","game_id":"897455227"}]]&t=1458284672949 ，其中p参数为重点，area_id为大区ID，即OB文件1_1111111.ob中的_线前部分，后面是game_id。
+             *      可以根据现有的OB文件，更改 http://api.pallas.tgp.qq.com/core/tcall?callback=getGameDetailCallback&dtag=profile&p=%5B%5B4%2C%7B%22area_id%22%3A%221%22%2C%22game_id%22%3A%221917183753%22%7D%5D%5D&t=1458284672949 对应的area_id、game_id的参数，浏览器打开访问即可。（这里p参数为URL编码后的形式）
+             *      若使用LolService.cs，则参考LolService.cs的 GetJsonResponse函数中 request.Headers.Add(HttpRequestHeader.Cookie, settingService.GetValueByName("lolCookie")); 这部分代码。
+             */
             using (StreamReader r = new StreamReader(jsonFileName))
             {
                 string json = r.ReadToEnd();
@@ -323,7 +333,7 @@ namespace WinGUITest1
                 tmp_cnt++;
             }
 
-        }
+        } 
 
 
         /// <summary> Test for ID parser
