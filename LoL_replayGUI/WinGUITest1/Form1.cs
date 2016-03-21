@@ -22,7 +22,7 @@ namespace WinGUITest1
 {
     public partial class Form1 : Form
     {
-        public string path;
+      //  public string path;
         public string[] files;
         public String groupName;
         private string lolPath;
@@ -159,7 +159,7 @@ namespace WinGUITest1
         /// /// </summary>
         private void button1_Click_1(object sender, EventArgs e) //play video
         {
-            if (path == null) return;
+            if (lolPath == null || groupName == null) return;
             Thread sample = new Thread(startLoLReplay);
             sample.Start();
             Thread.Sleep(1000 * 20);
@@ -200,12 +200,13 @@ namespace WinGUITest1
             {
                 p.Start();
                 StreamWriter sw = p.StandardInput;
-                char [] tmp = path.ToCharArray();
+                char [] tmp = lolPath.ToCharArray();
                 //sw.WriteLine("dir /w");
                 if (tmp[0] != 'C') sw.WriteLine(@"" + tmp[0] + ":");
                 //sw.WriteLine(@"E:");
-                sw.WriteLine(@"cd " + path);
-                sw.WriteLine(@"launcher.exe -f " + groupName + ".ob");
+                sw.WriteLine(@"cd " + lolPath);
+                string name = "replays\\" + groupName;
+                sw.WriteLine(@"launcher.exe -f " + name + ".ob");
                 p.StandardInput.WriteLine("exit");
                 strOutput = p.StandardOutput.ReadToEnd();//匯出整個執行過程
                 MessageBox.Show(strOutput);
@@ -248,9 +249,10 @@ namespace WinGUITest1
                     //string text = File.ReadAllText(file);
                     //根据选择的文件夹路径，设置LOL根目录
                     lolPath = openFileDialog1.SelectedPath;
-
+                    //Debug.WriteLine(lolPath);
                     //设置replays录像所在目录
                     lolReplayPath = openFileDialog1.SelectedPath + "\\replays";
+                    //Debug.WriteLine(lolReplayPath);
                     tbResults.Text = lolPath;
 
                     //获取replays 目录下文件列表
@@ -300,6 +302,7 @@ namespace WinGUITest1
         {
 
             string jsonFileName = lolReplayPath + "\\db\\" + fileName + ".json";
+            Debug.WriteLine(jsonFileName);
             /*
              *TODO :: 若json不存在，则重新从网络抓取。 参考 Lol\LolService.cs  GetDataById() 函数。需要COOKIE。
              *      预览方式：http://lol.qq.com 登录QQ ，然后 直接访问 http://api.pallas.tgp.qq.com/core/tcall?callback=getGameDetailCallback&dtag=profile&p=%5B%5B4%2C%7B%22area_id%22%3A%221%22%2C%22game_id%22%3A%221917183753%22%7D%5D%5D&t=1458284672949
@@ -310,7 +313,7 @@ namespace WinGUITest1
             using (StreamReader r = new StreamReader(jsonFileName))
             {
                 string json = r.ReadToEnd();
-                // Debug.Write(json);
+                 Debug.Write(json);
                 Team perTeam = JsonConvert.DeserializeObject<Team>(json);
 
                 lvwBooks.AddRow("", "", "", "", ""); // empty

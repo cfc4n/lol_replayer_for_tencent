@@ -456,6 +456,7 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.CausesValidation = false;
             this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -467,7 +468,7 @@
             this.button1.Size = new System.Drawing.Size(64, 66);
             this.button1.TabIndex = 5;
             this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.chooseFolderOnclick);
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // button2
             // 
@@ -617,9 +618,9 @@
             this.lvwBooks.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.lvwBooks.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvwBooks.LargeImageList = this.Lol_heros;
-            this.lvwBooks.Location = new System.Drawing.Point(24, 164);
+            this.lvwBooks.Location = new System.Drawing.Point(12, 164);
             this.lvwBooks.Name = "lvwBooks";
-            this.lvwBooks.Size = new System.Drawing.Size(287, 455);
+            this.lvwBooks.Size = new System.Drawing.Size(307, 455);
             this.lvwBooks.SmallImageList = this.Lol_heros;
             this.lvwBooks.TabIndex = 193;
             this.lvwBooks.UseCompatibleStateImageBehavior = false;
@@ -695,9 +696,6 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
-
-            // 初始化 LOL API 接口 service TODO 对其参数输入
-            //LolServ = new Lol.LolService();
         }
 
         #endregion
