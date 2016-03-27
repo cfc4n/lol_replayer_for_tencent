@@ -68,6 +68,15 @@
     <Compile Include="Lol\SnapShot.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\BaseEntity.cs" />
+    <Compile Include="Service\Battle.cs" />
+    <Compile Include="Service\ChampionInfo.cs" />
+    <Compile Include="Service\LolDataSpider.cs" />
+    <Compile Include="Service\MyRepository.cs" />
+    <Compile Include="Service\Record.cs" />
+    <Compile Include="Service\Setting.cs" />
+    <Compile Include="Service\SettingService.cs" />
+    <Compile Include="Service\SnapShot.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
