@@ -81,3 +81,5 @@ C:\Users\Scoly\Desktop\LoL\lol_replayer_for_tencent\LoL_replayGUI\WinGUITest1\bi
 C:\Users\Scoly\Desktop\LoL\lol_replayer_for_tencent\LoL_replayGUI\WinGUITest1\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Blurry\Documents\lol_replayer_for_tencent\LoL_replayGUI\WinGUITest1\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Blurry\Documents\lol_replayer_for_tencent\LoL_replayGUI\WinGUITest1\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Scoly\Desktop\LoLL\lol_replayer_for_tencent\LoL_replayGUI\WinGUITest1\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Scoly\Desktop\LoLL\lol_replayer_for_tencent\LoL_replayGUI\WinGUITest1\bin\Debug\Newtonsoft.Json.xml

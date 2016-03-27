@@ -1,6 +1,17 @@
 
 .project
 
-bin/launcher
-
+/bin/
+/LoL_replayGUI/WinGUITest1/bin/
+/LoL_replayGUI/WinGUITest1/obj/
+/LoL_replayGUI/.vs/
 *.a
+*.pdb
+LoL_replayGUI/WinGUITest1/obj/Debug/DesignTimeResolveAssemblyReferences.cache
+LoL_replayGUI/WinGUITest1/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+LoL_replayGUI/WinGUITest1/obj/Debug/Interop.WMPLib.dll
+LoL_replayGUI/WinGUITest1/obj/Debug/WinGUITest1.csproj.FileListAbsolute.txt
+LoL_replayGUI/WinGUITest1/bin/Debug/Interop.SHDocVw.dll
+LoL_replayGUI/WinGUITest1/bin/Debug/WinGUITest1.exe
+LoL_replayGUI/WinGUITest1/bin/Debug/Interop.SHDocVw.dll
+LoL_replayGUI/WinGUITest1/bin/Debug/WinGUITest1.vshost.exe
