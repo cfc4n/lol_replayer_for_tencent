@@ -155,13 +155,57 @@ namespace WinGUITest1
 
         }
 
+        /// <summary>
+        /// pop-out input box to get user's cookie in order to acquire game information
+        /// <summary>
+        public static DialogResult InputBox(string title, string promptText, ref string value)
+        {
+            Form form = new Form();
+            Label label = new Label();
+            TextBox textBox = new TextBox();
+            Button buttonOk = new Button();
+            Button buttonCancel = new Button();
+
+            form.Text = title;
+            label.Text = promptText;
+            textBox.Text = value;
+
+            buttonOk.Text = "OK";
+            buttonCancel.Text = "Cancel";
+            buttonOk.DialogResult = DialogResult.OK;
+            buttonCancel.DialogResult = DialogResult.Cancel;
+
+            label.SetBounds(9, 20, 372, 13);
+            textBox.SetBounds(12, 36, 372, 20);
+            buttonOk.SetBounds(228, 72, 75, 23);
+            buttonCancel.SetBounds(309, 72, 75, 23);
+
+            label.AutoSize = true;
+            textBox.Anchor = textBox.Anchor | AnchorStyles.Right;
+            buttonOk.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            buttonCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+
+            form.ClientSize = new Size(396, 107);
+            form.Controls.AddRange(new Control[] { label, textBox, buttonOk, buttonCancel });
+            form.ClientSize = new Size(Math.Max(300, label.Right + 10), form.ClientSize.Height);
+            form.FormBorderStyle = FormBorderStyle.FixedDialog;
+            form.StartPosition = FormStartPosition.CenterScreen;
+            form.MinimizeBox = false;
+            form.MaximizeBox = false;
+            form.AcceptButton = buttonOk;
+            form.CancelButton = buttonCancel;
+
+            DialogResult dialogResult = form.ShowDialog();
+            value = textBox.Text;
+            return dialogResult;
+        }
         /// <summary> Play Replay Video
         /// /// </summary>
         private void button1_Click_1(object sender, EventArgs e) //play video
         {
             /*
-             *  TO_DO: 加入try-catch，不然cookie過期或是沒cookie之類的程式就crash了。還要加個UI讓user log in不然沒cookie，該class就無法作用。
-             *  最後是將這段code移到正確位置，暫時放在這裡是因為比較好測試，只要按下撥放鍵，就能在output看到輸出。
+             *  TO_DO: (v) 加入try-catch，不然cookie過期或是沒cookie之類的程式就crash了。還要加個UI讓user log in不然沒cookie，該class就無法作用。
+             *  最後是將這段code移到正確位置，暫時放在這裡是因為比較好測試，只要按下撥放鍵，就能在output看到輸出。要把output出來的資訊正確接到view上。
              */
             MyRepository<Battle> battleRepository = new MyRepository<Battle>();
             MyRepository<Record> recordRepository = new MyRepository<Record>();
@@ -173,14 +217,32 @@ namespace WinGUITest1
 
             Setting setting = new Setting();
             setting.Name = "lolCookie";
-            setting.Value = "ptui_loginuin=00886929001668; pt2gguin=o2144651473; uin=o2144651473; skey=@sy1nG8QOp; RK=mnW/qbRWXS; ptcz=438c03e116982ba3e51851f8462474736a8acda69818d535d08f6843d7b49ce0; IED_LOG_INFO=uin*2144651473|nick*a514514772%20|time*1459092402";
+            setting.Value = "pgv_pvid=5100574670; pgv_info=pgvReferrer=&ssid=s5305104254";
 
-            settingService.AddSetting(setting);
-            LolDataSpider spider = new LolDataSpider(battleRepository, recordRepository, championInfoRepository, snapShotRepository, settingService);
-            Battle test = spider.GetDataById(1917183753, 1);
-            Debug.WriteLine(test.GameId);
-            Debug.WriteLine(test.Duration);
-            Debug.WriteLine(test.BattleType);
+            Battle test;
+            try
+            {
+                settingService.AddSetting(setting);
+                LolDataSpider spider = new LolDataSpider(battleRepository, recordRepository, championInfoRepository, snapShotRepository, settingService);
+                test = spider.GetDataById(1917183753, 1);
+                Debug.WriteLine(test.GameId);
+                Debug.WriteLine(test.Duration);
+                Debug.WriteLine(test.BattleType);
+            }
+            catch
+            {
+                Debug.WriteLine("There is something wrong, please check again.");
+                /*
+                 *  TO_DO : 輸出一些簡單的說明，協助使用者登入QQ後取得cookie。
+                 * 
+                 */
+                /*string value = "cookie~~~";
+                if (InputBox("type in cookie", "輸入cookie", ref value) == DialogResult.OK)
+                {
+                    Debug.WriteLine(value);
+                }*/
+            }
+            
 
 
             if (lolPath == null || groupName == null) return;
