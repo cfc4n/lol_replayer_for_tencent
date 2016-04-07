@@ -30,7 +30,7 @@ namespace WinGUITest1
         private int tmp_cnt;    //计数器
 
 
-        public class Player
+       /* public class Player
         {
             public string __module__ { get; set; }
             public string incoming { get; set; }
@@ -47,7 +47,7 @@ namespace WinGUITest1
             public string __module__ { get; set; }
             public string __class__ { get; set; }
             public List<Player> player_list { get; set; }
-        }
+        }*/
 
         public Form1()
         {
@@ -131,8 +131,8 @@ namespace WinGUITest1
                 "Accessories6", 47, HorizontalAlignment.Center,
                 "Accessories7", 47, HorizontalAlignment.Center,
                 "Empty", 10, HorizontalAlignment.Right,
-                "Money", 65, HorizontalAlignment.Left,
-                "Value", 30, HorizontalAlignment.Left);
+                "Money", 60, HorizontalAlignment.Left,
+                "Value", 40, HorizontalAlignment.Left);
             
             // 新增資料部分, empty為強制換行(符合背景格式)
             ListViewRight.AddRow("", "", "", "", "", "", "", "", "", "", "", "", "", "", ""); // empty
@@ -187,7 +187,7 @@ namespace WinGUITest1
 
             form.ClientSize = new Size(396, 107);
             form.Controls.AddRange(new Control[] { label, textBox, buttonOk, buttonCancel });
-            form.ClientSize = new Size(Math.Max(300, label.Right + 10), form.ClientSize.Height);
+            form.ClientSize = new Size(Math.Max(300, label.Right + 10), /*form.ClientSize.Height*/500);
             form.FormBorderStyle = FormBorderStyle.FixedDialog;
             form.StartPosition = FormStartPosition.CenterScreen;
             form.MinimizeBox = false;
@@ -203,45 +203,6 @@ namespace WinGUITest1
         /// /// </summary>
         private void button1_Click_1(object sender, EventArgs e) //play video
         {
-            /*
-             *  TO_DO: (v) 加入try-catch，不然cookie過期或是沒cookie之類的程式就crash了。還要加個UI讓user log in不然沒cookie，該class就無法作用。
-             *  最後是將這段code移到正確位置，暫時放在這裡是因為比較好測試，只要按下撥放鍵，就能在output看到輸出。要把output出來的資訊正確接到view上。
-             */
-            MyRepository<Battle> battleRepository = new MyRepository<Battle>();
-            MyRepository<Record> recordRepository = new MyRepository<Record>();
-            MyRepository<ChampionInfo> championInfoRepository = new MyRepository<ChampionInfo>();
-            MyRepository<SnapShot> snapShotRepository = new MyRepository<SnapShot>();
-            MyRepository<Setting> settingRepository = new MyRepository<Setting>();
-
-            SettingService settingService = new SettingService(settingRepository);
-
-            Setting setting = new Setting();
-            setting.Name = "lolCookie";
-            setting.Value = "pgv_pvid=5100574670; pgv_info=pgvReferrer=&ssid=s5305104254";
-
-            Battle test;
-            try
-            {
-                settingService.AddSetting(setting);
-                LolDataSpider spider = new LolDataSpider(battleRepository, recordRepository, championInfoRepository, snapShotRepository, settingService);
-                test = spider.GetDataById(1917183753, 1);
-                Debug.WriteLine(test.GameId);
-                Debug.WriteLine(test.Duration);
-                Debug.WriteLine(test.BattleType);
-            }
-            catch
-            {
-                Debug.WriteLine("There is something wrong, please check again.");
-                /*
-                 *  TO_DO : 輸出一些簡單的說明，協助使用者登入QQ後取得cookie。
-                 * 
-                 */
-                /*string value = "cookie~~~";
-                if (InputBox("type in cookie", "輸入cookie", ref value) == DialogResult.OK)
-                {
-                    Debug.WriteLine(value);
-                }*/
-            }
             
 
 
@@ -327,6 +288,7 @@ namespace WinGUITest1
                 foreach (ListViewItem eachItem in lvwBooks.Items)
                 {
                     lvwBooks.Items.Remove(eachItem);
+                    tmp_cnt = 0; // 計數器歸零
                 }
 
                 //string file = openFileDialog1.SelectedPath;
@@ -364,16 +326,16 @@ namespace WinGUITest1
 
                         //根據文件名，獲取對應文件名的json內數據
                         String jsonFile = fileName + 'A';
-                        getJsonByObName(jsonFile);
+                        getJsonByObName(jsonFile, fileName);
 
                         jsonFile = fileName + 'B';
-                        getJsonByObName(jsonFile);
+                        getJsonByObName(jsonFile, fileName, true);
 
                     }
                     // if 目录下文件为空
                     if (tmp_cnt <=0)
                     {
-                        // 请先下载录像文件到replays目录下
+                        MessageBox.Show("There is no ob files, please download the ob files first.");
                     }
                     
                 }
@@ -384,7 +346,7 @@ namespace WinGUITest1
 
         }
 
-        private void getJsonByObName(string fileName)
+        private void getJsonByObName(string fileName, string Obfilename, bool teamB = false)
         {
 
             string jsonFileName = lolReplayPath + "\\db\\" + fileName + ".json";
@@ -396,32 +358,89 @@ namespace WinGUITest1
              *      可以根据现有的OB文件，更改 http://api.pallas.tgp.qq.com/core/tcall?callback=getGameDetailCallback&dtag=profile&p=%5B%5B4%2C%7B%22area_id%22%3A%221%22%2C%22game_id%22%3A%221917183753%22%7D%5D%5D&t=1458284672949 对应的area_id、game_id的参数，浏览器打开访问即可。（这里p参数为URL编码后的形式）
              *      若使用LolService.cs，则参考LolService.cs的 GetJsonResponse函数中 request.Headers.Add(HttpRequestHeader.Cookie, settingService.GetValueByName("lolCookie")); 这部分代码。
              */
-            
-            using (StreamReader r = new StreamReader(jsonFileName))
-            {
-                string json = r.ReadToEnd();
-                 Debug.Write(json);
-                Team perTeam = JsonConvert.DeserializeObject<Team>(json);
 
-                lvwBooks.AddRow("", "", "", "", ""); // empty
+            if (!File.Exists(jsonFileName)) {
+                /*
+             *  TO_DO: (v) 加入try-catch，不然cookie過期或是沒cookie之類的程式就crash了。還要加個UI讓user log in不然沒cookie，該class就無法作用。
+             *  最後是將這段code移到正確位置，暫時放在這裡是因為比較好測試，只要按下撥放鍵，就能在output看到輸出。要把output出來的資訊正確接到view上。
+             */
+                MyRepository<Battle> battleRepository = new MyRepository<Battle>();
+                MyRepository<Record> recordRepository = new MyRepository<Record>();
+                MyRepository<ChampionInfo> championInfoRepository = new MyRepository<ChampionInfo>();
+                MyRepository<SnapShot> snapShotRepository = new MyRepository<SnapShot>();
+                MyRepository<Setting> settingRepository = new MyRepository<Setting>();
 
-                // Add icons to the sub-items.
-                for (int i = tmp_cnt; i < lvwBooks.Items.Count; i++)
+                SettingService settingService = new SettingService(settingRepository);
+
+                Setting setting = new Setting();
+                setting.Name = "lolCookie";
+                setting.Value = "pgv_pvi=2140056576; pgv_si=s8457872384; pgv_pvid=899159065; pgv_info=pgvReferrer=&ssid=s157361622; ptisp=cn; ptui_loginuin=00886929001668; pt2gguin=o2144651473; uin=o2144651473; skey=@Tw9l7VgET; RK=+mW3u7R2Wy; ptcz=60f35fa5e7def4af02c5e9b9838713e31fbdaf713af04eec539e7ab9d9d4c164; IED_LOG_INFO=uin*2144651473|nick*a514514772%20|time*1460039631";
+                /*
+                 "pgv_pvi=2501693440; pgv_si=s6959702016; pgv_pvid=932930068; pgv_info=pgvReferrer=&ssid=s8234311070; ptisp=cn; ptui_loginuin=00886929001668; pt2gguin=o2144651473; uin=o2144651473; skey=@jDNBIyes1; RK=+mW3u7R2Wy; ptcz=fe9dc9d80a764c7517a31e00f8875751328c7c88449a92898b5f58688efd01bd; IED_LOG_INFO=uin*2144651473|nick*a514514772%20|time*1460035654"
+                 "pgv_pvi=2140056576; pgv_si=s8457872384; pgv_pvid=899159065; pgv_info=pgvReferrer=&ssid=s157361622; ptisp=cn; ptui_loginuin=00886929001668; pt2gguin=o2144651473; uin=o2144651473; skey=@Tw9l7VgET; RK=+mW3u7R2Wy; ptcz=60f35fa5e7def4af02c5e9b9838713e31fbdaf713af04eec539e7ab9d9d4c164; IED_LOG_INFO=uin*2144651473|nick*a514514772%20|time*1460039631"
+                 */
+                string[] ID = Obfilename.Split('_');
+                int areaID = Int32.Parse(ID[0]);
+                int gameID = Int32.Parse(ID[1]);
+                Battle test;
+                try
                 {
-                    // Set the main item's image index.
-                    int index = SearchImageFromList(perTeam.player_list[0].role + ".png");
-                    lvwBooks.Items[i].ImageIndex = index;
-                    lvwBooks.Items[i].Group = lvwBooks.Groups[tmp_cnt / 2];
-
-                    for (int c = 1; c < lvwBooks.Columns.Count; c++)
+                    settingService.AddSetting(setting);
+                    LolDataSpider spider = new LolDataSpider(battleRepository, recordRepository, championInfoRepository, snapShotRepository, settingService);
+                    test = spider.GetDataById(gameID, areaID, jsonFileName);
+                    /*Debug.WriteLine(test.GameId);
+                    Debug.WriteLine(test.Duration);
+                    Debug.WriteLine(test.BattleType);*/
+                }
+                catch
+                {
+                    Debug.WriteLine("There is something wrong, please check again.");
+                    /*
+                     *  TO_DO : 輸出一些簡單的說明，協助使用者登入QQ後取得cookie。
+                     * 
+                     */
+                    string value = "cookie~~~";
+                    string explanation = "In order to acquite game information, we need your cookie after log in QQ.\nPlease follow these steps : \n1. open your browser and go to the website : http://lol.qq.com/comm-htdocs/pay/new_index.htm?t=lol or any website which you can log in QQ";
+                    if (InputBox("type in cookie", /*explanation*/ "test", ref value) == DialogResult.OK)
                     {
-                        index = SearchImageFromList(perTeam.player_list[c].role + ".png");
-                        lvwBooks.AddIconToSubitem(i, c, index);
-
+                        Debug.WriteLine(value);
                     }
                 }
-                tmp_cnt++;
+            
             }
+            int anotherCounter = 0;
+            if (teamB) {
+                anotherCounter = 5;
+            }
+            if (File.Exists(jsonFileName))
+            {
+                using (StreamReader r = new StreamReader(jsonFileName))
+                {
+                    string json = r.ReadToEnd();
+                    Debug.Write(json);
+                    List<Record> perTeam = JsonConvert.DeserializeObject<List<Record>>(json);
+
+                    lvwBooks.AddRow("", "", "", "", ""); // empty
+
+                    // Add icons to the sub-items.
+                    for (int i = tmp_cnt; i < lvwBooks.Items.Count; i++)
+                    {
+                        // Set the main item's image index.
+                        //int index = SearchImageFromList(perTeam[0].role + ".png");
+                        lvwBooks.Items[i].ImageIndex = perTeam[0 + anotherCounter].ChampionId;
+                        lvwBooks.Items[i].Group = lvwBooks.Groups[tmp_cnt / 2];
+
+                        for (int c = 1; c < lvwBooks.Columns.Count; c++)
+                        {
+                            int index = perTeam[c + anotherCounter].ChampionId;
+                            lvwBooks.AddIconToSubitem(i, c, index);
+
+                        }
+                    }
+                    tmp_cnt++;
+                }
+            }
+            
 
         } 
 
@@ -483,20 +502,30 @@ namespace WinGUITest1
             using (StreamReader r = new StreamReader(jsonFileName))
             {
                 string json = r.ReadToEnd();
-                Team perTeam = JsonConvert.DeserializeObject<Team>(json);
+                List<Record> perTeam = JsonConvert.DeserializeObject<List<Record>>(json);
 
 
                 for (row = (1 + step); row < (6+ step); row++)
                 {
-                    String roleName = perTeam.player_list[row - (1+step)].role + ".png";
+                    /*String roleName = perTeam.player_list[row - (1+step)].role + ".png";
                     Debug.Write(roleName);
-                    ListViewRight.AddIconToSubitem(row, 1, SearchImageFromList(roleName));
-                    ListViewRight.Items[row].SubItems[2].Text = perTeam.player_list[row - (1 + step)].name + '\n' + perTeam.player_list[row - (1 + step)].role;
-                    ListViewRight.Items[row].SubItems[3].Text = perTeam.player_list[row - (1 + step)].KDA;
-                    for (int j = 0; j < perTeam.player_list[row - (1+step)].equipments.Count; j++)
-                        ListViewRight.AddIconToSubitem(row, 5 + j, SearchImageFromList(perTeam.player_list[row - (1 + step)].equipments[j] + ".png"));
-                    ListViewRight.Items[row].SubItems[13].Text = perTeam.player_list[row - (1 + step)].incoming + 'k';
-                    ListViewRight.Items[row].SubItems[14].Text = perTeam.player_list[row - (1 + step)].farm;
+                    ListViewRight.AddIconToSubitem(row, 1, SearchImageFromList(roleName));*/
+                    ListViewRight.AddIconToSubitem(row, 1, perTeam[row - (1 + step)].ChampionId);
+                    ListViewRight.Items[row].SubItems[2].Text = perTeam[row - (1 + step)].Name + '\n' + perTeam[row - (1 + step)].ChampionId;
+                    ListViewRight.Items[row].SubItems[3].Text = perTeam[row - (1 + step)].KDA;
+                    for (int j = 0; j < 6; j++)
+                    {
+                        //ListViewRight.AddIconToSubitem(row, 5 + j, SearchImageFromList(perTeam[row - (1 + step)].Item0 + ".png"));
+                    }
+                    ListViewRight.AddIconToSubitem(row, 5, SearchImageFromList(perTeam[row - (1 + step)].Item0 + ".png"));
+                    ListViewRight.AddIconToSubitem(row, 6, SearchImageFromList(perTeam[row - (1 + step)].Item1 + ".png"));
+                    ListViewRight.AddIconToSubitem(row, 7, SearchImageFromList(perTeam[row - (1 + step)].Item2 + ".png"));
+                    ListViewRight.AddIconToSubitem(row, 8, SearchImageFromList(perTeam[row - (1 + step)].Item3 + ".png"));
+                    ListViewRight.AddIconToSubitem(row, 9, SearchImageFromList(perTeam[row - (1 + step)].Item4 + ".png"));
+                    ListViewRight.AddIconToSubitem(row, 10, SearchImageFromList(perTeam[row - (1 + step)].Item5 + ".png"));
+                    ListViewRight.AddIconToSubitem(row, 11, SearchImageFromList(perTeam[row - (1 + step)].Item6 + ".png"));
+                    ListViewRight.Items[row].SubItems[13].Text = perTeam[row - (1 + step)].GoldEarned.ToString() + 'k';
+                    ListViewRight.Items[row].SubItems[14].Text = perTeam[row - (1 + step)].MinionsKilled.ToString();
                     //ListViewRight.AddToSubitem(row, 1, SearchImageFromList(roleName));
                 }
             }

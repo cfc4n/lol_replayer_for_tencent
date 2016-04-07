@@ -24,6 +24,8 @@ namespace WinGUITest1.Service
         public int Item3 { get; set; }
         public int Item4 { get; set; }
         public int Item5 { get; set; }
+        public int Item6 { get; set; }
+        public string KDA { get; set; }
         public int MinionsKilled { get; set; }
         public string BattleTagList { get; set; }
         public int LargestKillingSpree { get; set; }

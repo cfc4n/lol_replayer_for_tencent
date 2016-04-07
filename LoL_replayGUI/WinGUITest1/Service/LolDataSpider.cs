@@ -181,7 +181,7 @@ namespace WinGUITest1.Service
             }
             return list;
         }
-        public Battle GetDataById(int id, int areaId)
+        public Battle GetDataById(int id, int areaId, string jsonFileName = "NA")
         {
 
             dynamic record =
@@ -202,7 +202,7 @@ namespace WinGUITest1.Service
                 {
                     QQ = rs[i].qquin,
                     ChampionId = rs[i].champion_id,
-                    GoldEarned = rs[i].gold_earned,
+                    GoldEarned = rs[i].gold_earned, //incoming
                     DamageTaken = rs[i].total_damage_taken,
                     TotalDamage = rs[i].total_damage_dealt_to_champions,
                     Name = rs[i].name,
@@ -216,12 +216,21 @@ namespace WinGUITest1.Service
                     Item3 = rs[i].item3,
                     Item4 = rs[i].item4,
                     Item5 = rs[i].item5,
+                    Item6 = rs[i].item6,
+                    KDA = rs[i].champions_killed + "/" + rs[i].num_deaths + "/" + rs[i].assists,
                     BattleTagList = tagList.TrimEnd(';'),
                     MinionsKilled = rs[i].minions_killed,
                     LargestKillingSpree = rs[i].largest_killing_spree,
 
                 });
             }
+            if(jsonFileName != "NA"){
+                String json_data = JsonConvert.SerializeObject(list);
+                StreamWriter sw = new StreamWriter(jsonFileName);
+                sw.WriteLine(json_data);			// 寫入文字
+                sw.Close();						// 關閉串流
+            }
+
             return new Battle
             {
                 GameId = record.data[0].battle.game_id,
