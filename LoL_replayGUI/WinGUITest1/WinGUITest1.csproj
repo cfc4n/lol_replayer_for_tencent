@@ -58,6 +58,7 @@
     <Compile Include="Lol\BaseEntity.cs" />
     <Compile Include="Lol\Battle.cs" />
     <Compile Include="Lol\ChampionInfo.cs" />
+    <Compile Include="Lol\ChampionTable.cs" />
     <Compile Include="Lol\ILolService.cs" />
     <Compile Include="Lol\IRepository.cs" />
     <Compile Include="Lol\ISettingService.cs" />

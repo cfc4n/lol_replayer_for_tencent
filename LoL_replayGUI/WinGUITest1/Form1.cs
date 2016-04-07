@@ -28,6 +28,7 @@ namespace WinGUITest1
         private string lolPath;
         private string lolReplayPath;
         private int tmp_cnt;    //计数器
+        WinGUITest1.Lol.ChampionTable championtable = new WinGUITest1.Lol.ChampionTable();
 
 
        /* public class Player
@@ -426,14 +427,14 @@ namespace WinGUITest1
                     for (int i = tmp_cnt; i < lvwBooks.Items.Count; i++)
                     {
                         // Set the main item's image index.
-                        //int index = SearchImageFromList(perTeam[0].role + ".png");
-                        lvwBooks.Items[i].ImageIndex = perTeam[0 + anotherCounter].ChampionId;
+                        string ChampionName = championtable.getNameFromID(perTeam[0 + anotherCounter].ChampionId) + ".png";
+                        lvwBooks.Items[i].ImageIndex = SearchImageFromList(ChampionName);
                         lvwBooks.Items[i].Group = lvwBooks.Groups[tmp_cnt / 2];
 
                         for (int c = 1; c < lvwBooks.Columns.Count; c++)
                         {
-                            int index = perTeam[c + anotherCounter].ChampionId;
-                            lvwBooks.AddIconToSubitem(i, c, index);
+                            ChampionName = championtable.getNameFromID( perTeam[c + anotherCounter].ChampionId) + ".png";
+                            lvwBooks.AddIconToSubitem(i, c, SearchImageFromList(ChampionName));
 
                         }
                     }
@@ -494,10 +495,11 @@ namespace WinGUITest1
         {
             string jsonFileName = lolReplayPath + "\\db\\" + fileName + ".json";
             int row;
-            int step = 0;
+            int step = 0, anotherCounter = 0;
             if (teamB)
             {
                 step = 7;   //此处是根据你们代码理解计算出来的，我也不知道为什么 Team B的初始化时，是row = 8
+                anotherCounter = 5;
             }
             using (StreamReader r = new StreamReader(jsonFileName))
             {
@@ -510,22 +512,23 @@ namespace WinGUITest1
                     /*String roleName = perTeam.player_list[row - (1+step)].role + ".png";
                     Debug.Write(roleName);
                     ListViewRight.AddIconToSubitem(row, 1, SearchImageFromList(roleName));*/
-                    ListViewRight.AddIconToSubitem(row, 1, perTeam[row - (1 + step)].ChampionId);
-                    ListViewRight.Items[row].SubItems[2].Text = perTeam[row - (1 + step)].Name + '\n' + perTeam[row - (1 + step)].ChampionId;
-                    ListViewRight.Items[row].SubItems[3].Text = perTeam[row - (1 + step)].KDA;
+                    string ChampionName = championtable.getNameFromID(perTeam[row - (1 + step) + anotherCounter].ChampionId);
+                    ListViewRight.AddIconToSubitem(row, 1, SearchImageFromList(ChampionName + ".png"));
+                    ListViewRight.Items[row].SubItems[2].Text = perTeam[row - (1 + step) + anotherCounter].Name + '\n' + ChampionName;
+                    ListViewRight.Items[row].SubItems[3].Text = perTeam[row - (1 + step) + anotherCounter].KDA;
                     for (int j = 0; j < 6; j++)
                     {
                         //ListViewRight.AddIconToSubitem(row, 5 + j, SearchImageFromList(perTeam[row - (1 + step)].Item0 + ".png"));
                     }
-                    ListViewRight.AddIconToSubitem(row, 5, SearchImageFromList(perTeam[row - (1 + step)].Item0 + ".png"));
-                    ListViewRight.AddIconToSubitem(row, 6, SearchImageFromList(perTeam[row - (1 + step)].Item1 + ".png"));
-                    ListViewRight.AddIconToSubitem(row, 7, SearchImageFromList(perTeam[row - (1 + step)].Item2 + ".png"));
-                    ListViewRight.AddIconToSubitem(row, 8, SearchImageFromList(perTeam[row - (1 + step)].Item3 + ".png"));
-                    ListViewRight.AddIconToSubitem(row, 9, SearchImageFromList(perTeam[row - (1 + step)].Item4 + ".png"));
-                    ListViewRight.AddIconToSubitem(row, 10, SearchImageFromList(perTeam[row - (1 + step)].Item5 + ".png"));
-                    ListViewRight.AddIconToSubitem(row, 11, SearchImageFromList(perTeam[row - (1 + step)].Item6 + ".png"));
-                    ListViewRight.Items[row].SubItems[13].Text = perTeam[row - (1 + step)].GoldEarned.ToString() + 'k';
-                    ListViewRight.Items[row].SubItems[14].Text = perTeam[row - (1 + step)].MinionsKilled.ToString();
+                    ListViewRight.AddIconToSubitem(row, 5, SearchImageFromList(perTeam[row - (1 + step) + anotherCounter].Item0 + ".png"));
+                    ListViewRight.AddIconToSubitem(row, 6, SearchImageFromList(perTeam[row - (1 + step) + anotherCounter].Item1 + ".png"));
+                    ListViewRight.AddIconToSubitem(row, 7, SearchImageFromList(perTeam[row - (1 + step) + anotherCounter].Item2 + ".png"));
+                    ListViewRight.AddIconToSubitem(row, 8, SearchImageFromList(perTeam[row - (1 + step) + anotherCounter].Item3 + ".png"));
+                    ListViewRight.AddIconToSubitem(row, 9, SearchImageFromList(perTeam[row - (1 + step) + anotherCounter].Item4 + ".png"));
+                    ListViewRight.AddIconToSubitem(row, 10, SearchImageFromList(perTeam[row - (1 + step) + anotherCounter].Item5 + ".png"));
+                    ListViewRight.AddIconToSubitem(row, 11, SearchImageFromList(perTeam[row - (1 + step) + anotherCounter].Item6 + ".png"));
+                    ListViewRight.Items[row].SubItems[13].Text = perTeam[row - (1 + step) + anotherCounter].GoldEarned.ToString() + 'k';
+                    ListViewRight.Items[row].SubItems[14].Text = perTeam[row - (1 + step) + anotherCounter].MinionsKilled.ToString();
                     //ListViewRight.AddToSubitem(row, 1, SearchImageFromList(roleName));
                 }
             }
