@@ -101,3 +101,4 @@ D:\Stephen\code\lol_replayer_for_tencent\LoL_replayGUI\WinGUITest1\bin\Debug\New
 D:\Stephen\code\lol_replayer_for_tencent\LoL_replayGUI\WinGUITest1\bin\Debug\Interop.SHDocVw.dll
 D:\Stephen\code\lol_replayer_for_tencent\LoL_replayGUI\WinGUITest1\bin\Debug\Interop.WMPLib.dll
 D:\Stephen\code\lol_replayer_for_tencent\LoL_replayGUI\WinGUITest1\bin\Debug\AxInterop.WMPLib.dll
+C:\Users\Blurry\Documents\lol_replayer_for_tencent\LoL_replayGUI\WinGUITest1\obj\Debug\WinGUITest1.csprojResolveAssemblyReference.cache
