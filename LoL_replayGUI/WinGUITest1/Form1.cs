@@ -16,7 +16,7 @@ using System.Drawing.Imaging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-using WinGUITest1.Lol;
+using WinGUITest1.Service;
 
 namespace WinGUITest1
 {
@@ -159,6 +159,30 @@ namespace WinGUITest1
         /// /// </summary>
         private void button1_Click_1(object sender, EventArgs e) //play video
         {
+            /*
+             *  TO_DO: 加入try-catch，不然cookie過期或是沒cookie之類的程式就crash了。還要加個UI讓user log in不然沒cookie，該class就無法作用。
+             *  最後是將這段code移到正確位置，暫時放在這裡是因為比較好測試，只要按下撥放鍵，就能在output看到輸出。
+             */
+            MyRepository<Battle> battleRepository = new MyRepository<Battle>();
+            MyRepository<Record> recordRepository = new MyRepository<Record>();
+            MyRepository<ChampionInfo> championInfoRepository = new MyRepository<ChampionInfo>();
+            MyRepository<SnapShot> snapShotRepository = new MyRepository<SnapShot>();
+            MyRepository<Setting> settingRepository = new MyRepository<Setting>();
+
+            SettingService settingService = new SettingService(settingRepository);
+
+            Setting setting = new Setting();
+            setting.Name = "lolCookie";
+            setting.Value = "ptui_loginuin=00886929001668; pt2gguin=o2144651473; uin=o2144651473; skey=@sy1nG8QOp; RK=mnW/qbRWXS; ptcz=438c03e116982ba3e51851f8462474736a8acda69818d535d08f6843d7b49ce0; IED_LOG_INFO=uin*2144651473|nick*a514514772%20|time*1459092402";
+
+            settingService.AddSetting(setting);
+            LolDataSpider spider = new LolDataSpider(battleRepository, recordRepository, championInfoRepository, snapShotRepository, settingService);
+            Battle test = spider.GetDataById(1917183753, 1);
+            Debug.WriteLine(test.GameId);
+            Debug.WriteLine(test.Duration);
+            Debug.WriteLine(test.BattleType);
+
+
             if (lolPath == null || groupName == null) return;
             Thread sample = new Thread(startLoLReplay);
             sample.Start();
@@ -195,7 +219,7 @@ namespace WinGUITest1
             p.StartInfo.RedirectStandardError = true;
             p.StartInfo.CreateNoWindow = true; //不跳出cmd視窗
             string strOutput = null;
-
+            
             try
             {
                 p.Start();
@@ -310,6 +334,7 @@ namespace WinGUITest1
              *      可以根据现有的OB文件，更改 http://api.pallas.tgp.qq.com/core/tcall?callback=getGameDetailCallback&dtag=profile&p=%5B%5B4%2C%7B%22area_id%22%3A%221%22%2C%22game_id%22%3A%221917183753%22%7D%5D%5D&t=1458284672949 对应的area_id、game_id的参数，浏览器打开访问即可。（这里p参数为URL编码后的形式）
              *      若使用LolService.cs，则参考LolService.cs的 GetJsonResponse函数中 request.Headers.Add(HttpRequestHeader.Cookie, settingService.GetValueByName("lolCookie")); 这部分代码。
              */
+            
             using (StreamReader r = new StreamReader(jsonFileName))
             {
                 string json = r.ReadToEnd();
