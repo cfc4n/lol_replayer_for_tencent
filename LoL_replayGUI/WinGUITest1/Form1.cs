@@ -187,7 +187,7 @@ namespace WinGUITest1
 
             form.ClientSize = new Size(396, 107);
             form.Controls.AddRange(new Control[] { label, textBox, buttonOk, buttonCancel });
-            form.ClientSize = new Size(Math.Max(300, label.Right + 10), form.ClientSize.Height);
+            form.ClientSize = new Size(Math.Max(300, label.Right + 10), /*form.ClientSize.Height*/500);
             form.FormBorderStyle = FormBorderStyle.FixedDialog;
             form.StartPosition = FormStartPosition.CenterScreen;
             form.MinimizeBox = false;
@@ -236,11 +236,12 @@ namespace WinGUITest1
                  *  TO_DO : 輸出一些簡單的說明，協助使用者登入QQ後取得cookie。
                  * 
                  */
-                /*string value = "cookie~~~";
-                if (InputBox("type in cookie", "輸入cookie", ref value) == DialogResult.OK)
+                string value = "cookie~~~";
+                string explanation = "In order to acquite game information, we need your cookie after log in QQ.\nPlease follow these steps : \n1. open your browser and go to the website : http://lol.qq.com/comm-htdocs/pay/new_index.htm?t=lol or any website which you can log in QQ";
+                if (InputBox("type in cookie", /*explanation*/ "test", ref value) == DialogResult.OK)
                 {
                     Debug.WriteLine(value);
-                }*/
+                }
             }
             
 
