@@ -1,5 +1,6 @@
 # lol_replayer_for_tencent 介绍
 League Of Legends 英雄联盟，腾讯游戏助手TGP录像的解析代码，可搭建录像服务器，启动游戏进行观看录像。
+DISCLAIMER: 此项目已合并至 https://github.com/cfc4n/lol_launcher .
 
 # 程序实现的技术分析
 在mac osx上看lol国服ob录像的技术分析： http://www.cnxct.com/how-to-watch-lol-tencent-ob-on-mac-osx/
